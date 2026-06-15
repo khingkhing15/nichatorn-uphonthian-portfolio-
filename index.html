@@ -693,6 +693,128 @@ section{padding:80px 6vw;}
   .proto-press::after{animation:none;}
 }
 
+/* Flow tabs */
+.proto-tabs{display:flex; gap:10px; flex-wrap:wrap; margin-bottom:28px;}
+.proto-tab{
+  font-family:var(--mono);
+  font-size:0.7rem;
+  text-transform:uppercase;
+  letter-spacing:0.1em;
+  padding:10px 18px;
+  border-radius:999px;
+  border:1px solid var(--border-strong);
+  background:var(--bg-raised);
+  color:var(--text-soft);
+  cursor:pointer;
+  transition:color 0.25s, border-color 0.25s, background 0.25s;
+}
+.proto-tab:hover{border-color:var(--gold); color:var(--cream);}
+.proto-tab.active{background:var(--gold); color:var(--bg); border-color:transparent;}
+.proto-flow{display:none;}
+.proto-flow.active{display:flex; gap:40px; flex-wrap:wrap; align-items:center;}
+
+/* Coral screen variant (alerts) */
+.proto-screen--coral{background:var(--coral); color:#fff;}
+.proto-screen--coral .proto-brand{color:#fff;}
+.proto-screen--coral .proto-p{color:#fff; opacity:0.9;}
+
+/* Siren badge */
+.proto-siren{
+  width:108px; height:108px; border-radius:50%;
+  background:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-size:2.4rem;
+  margin:20px auto 18px;
+}
+
+/* Menu screen */
+.proto-menu-icon{font-size:2.2rem; text-align:center; margin:18px 0 22px;}
+.proto-menu-btn{
+  display:block;
+  width:100%;
+  border-radius:999px;
+  padding:13px 16px;
+  font-family:var(--sans);
+  font-weight:600;
+  font-size:0.84rem;
+  text-align:center;
+  cursor:pointer;
+  border:1.5px solid #3F5C53;
+  background:transparent;
+  color:#3F5C53;
+  margin-bottom:10px;
+  transition:transform 0.15s ease;
+}
+.proto-menu-btn:hover{transform:translateY(-1px);}
+.proto-menu-btn--solid{background:#3F5C53; color:#fff; border-color:#3F5C53;}
+.proto-quote{
+  margin-top:auto;
+  font-family:var(--serif);
+  font-style:italic;
+  font-size:0.86rem;
+  text-align:center;
+  color:#5C6B63;
+}
+
+/* Sign-up form */
+.proto-field{margin-bottom:14px;}
+.proto-field label{
+  display:block; font-size:0.74rem; color:#5C6B63; margin-bottom:4px;
+}
+.proto-field__line{border-bottom:1.5px solid var(--gold); height:18px;}
+.proto-hint{font-size:0.66rem; color:var(--gold); margin-top:4px; line-height:1.4;}
+.proto-code--inline{margin:6px 0 0; justify-content:flex-start;}
+.proto-code--inline span{width:30px; height:34px; border-color:var(--gold);}
+
+/* Terms */
+.proto-terms{
+  flex:1; overflow:hidden; position:relative;
+  background:#fff; border-radius:12px; padding:14px;
+  margin:14px 0;
+}
+.proto-terms p{font-size:0.7rem; line-height:1.5; color:#444; margin-bottom:8px;}
+.proto-terms__fade{
+  position:absolute; left:0; right:0; bottom:0; height:36px;
+  background:linear-gradient(180deg, rgba(255,255,255,0), #fff);
+}
+.proto-checkbox-row{
+  display:flex; align-items:center; gap:10px;
+  font-size:0.78rem; color:var(--cream);
+  margin-bottom:14px;
+}
+.proto-checkbox{
+  width:20px; height:20px; border-radius:5px;
+  border:1.5px solid var(--gold); flex-shrink:0;
+}
+.proto-checkbox-row span strong{color:var(--gold);}
+
+/* About */
+.proto-about-icon{font-size:2.4rem; text-align:center; margin:18px 0;}
+.proto-h2{font-family:var(--serif); font-weight:700; font-size:1.1rem; margin-bottom:8px;}
+
+/* Abstract map */
+.proto-map{
+  flex:1; position:relative; border-radius:12px; overflow:hidden;
+  background:#E7EDE6; margin:14px 0;
+}
+.proto-map svg{display:block; width:100%; height:100%;}
+.proto-map__label{
+  position:absolute; top:10px; left:12px; right:12px;
+  font-size:0.66rem; font-family:var(--mono);
+  text-transform:uppercase; letter-spacing:0.08em;
+  color:#5C6B63;
+}
+
+/* Back button for sub-screens */
+.proto-back{
+  position:absolute; top:18px; left:20px; z-index:5;
+  width:26px; height:26px; border-radius:50%;
+  border:none; cursor:pointer;
+  background:var(--gold); color:#26190A;
+  font-size:1rem; line-height:1; font-weight:700;
+  display:flex; align-items:center; justify-content:center;
+}
+
 /* ===== OFFER / WHAT I BRING ===== */
 .offer-grid{
   display:grid;
@@ -1256,9 +1378,113 @@ footer .section__label{color:var(--gold);}
   </div>
 
   <div class="proto-section">
-    <h3 class="proto-heading">Try the safety flow</h3>
-    <p class="proto-lead">Below is a walkthrough of the Adobe XD prototype I designed for LIMELIGHT — the same flow I tested with five participants for the System Usability Scale and alert-activation timing. Tap through each screen to follow a user from a safe walk home to triggering, and clearing, an emergency alert.</p>
-    <div class="proto-wrap">
+    <h3 class="proto-heading">Try the prototype</h3>
+    <p class="proto-lead">This is the Adobe XD prototype I designed for LIMELIGHT, recreated here as a tap-through walk. Switch between the three flows below — getting set up, walking home safely, and stepping in to help a neighbor — the same screens I tested with five participants for the System Usability Scale and alert-activation timing.</p>
+    <div class="proto-tabs" id="protoTabs">
+      <button class="proto-tab active" data-flow="onboarding">Getting set up</button>
+      <button class="proto-tab" data-flow="walkhome">Walking home safely</button>
+      <button class="proto-tab" data-flow="rescue">Helping a neighbor</button>
+    </div>
+    <div class="proto-flow active" data-flow="onboarding">
+      <div class="proto-device">
+        <div class="proto-notch"></div>
+
+        <div class="proto-screen proto-screen--gold active" data-screen="welcome">
+          <div class="proto-brand">Limelight</div>
+          <div class="proto-icon">🚨</div>
+          <h3 class="proto-h1">LET US BE YOUR<br>WALK HOME BUDDY</h3>
+          <p class="proto-p">Just a few minutes for your safety. No worries, we've got your back!</p>
+          <button class="proto-btn proto-btn--dark" data-next="menu">Get Started</button>
+        </div>
+
+        <div class="proto-screen proto-screen--light" data-screen="menu">
+          <div class="proto-brand">Limelight</div>
+          <div class="proto-menu-icon">🚨</div>
+          <button class="proto-menu-btn proto-menu-btn--solid" data-next="signup">Sign Up</button>
+          <button class="proto-menu-btn" data-next="about">About Us</button>
+          <button class="proto-menu-btn" data-next="neighborhood">Neighborhood</button>
+          <p class="proto-quote">"Everyone should have the right to feel safe and be safe."</p>
+        </div>
+
+        <div class="proto-screen proto-screen--light" data-screen="signup">
+          <div class="proto-brand">Limelight</div>
+          <button class="proto-back" data-next="menu" aria-label="Back">‹</button>
+          <h3 class="proto-h1 proto-h1--condensed" style="margin-top:30px;">Sign Up</h3>
+          <p class="proto-p">Just a few more steps — we're almost there!</p>
+          <div class="proto-field"><label>First name</label><div class="proto-field__line"></div></div>
+          <div class="proto-field"><label>Last name</label><div class="proto-field__line"></div></div>
+          <div class="proto-field">
+            <label>It's ME code</label>
+            <div class="proto-code proto-code--inline"><span></span><span></span><span></span><span></span></div>
+            <p class="proto-hint">Used to verify the Emergency Button and I'm Safe button.</p>
+          </div>
+          <div class="proto-field"><label>Phone number</label><div class="proto-field__line"></div></div>
+          <button class="proto-btn proto-btn--gold" data-next="terms">Send OTP request</button>
+        </div>
+
+        <div class="proto-screen proto-screen--dark" data-screen="terms">
+          <div class="proto-brand">Limelight</div>
+          <button class="proto-back" data-next="signup" aria-label="Back">‹</button>
+          <h3 class="proto-h1 proto-h1--gold" style="margin-top:30px; text-align:center;">Terms &amp; Conditions</h3>
+          <div class="proto-terms">
+            <p>Limelight aims to provide a safe, friendly experience. Everything you enter stays confidential, and using the app means agreeing to these Terms and the relevant laws.</p>
+            <p>Users must not harass, threaten or stalk others, send spam, reverse-engineer the app, or raise a false alarm — doing so can mean losing access to the app.</p>
+            <div class="proto-terms__fade"></div>
+          </div>
+          <div class="proto-checkbox-row"><span class="proto-checkbox"></span><span>I agree to the <strong>terms &amp; conditions</strong></span></div>
+          <button class="proto-btn proto-btn--gold" data-next="menu">Done</button>
+        </div>
+
+        <div class="proto-screen proto-screen--gold" data-screen="about">
+          <div class="proto-brand">Limelight</div>
+          <button class="proto-back" data-next="menu" aria-label="Back">‹</button>
+          <h3 class="proto-h1" style="margin-top:36px;">About Us</h3>
+          <div class="proto-about-icon">🔎</div>
+          <div class="proto-terms" style="background:#FBF6EC;">
+            <h4 class="proto-h2" style="color:#26190A;">Afraid of walking home alone?</h4>
+            <p style="color:#444;">Limelight partners with bars and cafés around Soi Nana — they're alerted the moment you press the emergency button.</p>
+            <h4 class="proto-h2" style="color:#26190A; margin-top:10px;">Why Limelight?</h4>
+            <p style="color:#444;">LIMELIGHT (n.) the focus of public attention — wherever you are in a dark spot, there's always someone nearby ready to help.</p>
+          </div>
+        </div>
+
+        <div class="proto-screen proto-screen--light" data-screen="neighborhood">
+          <div class="proto-brand">Limelight</div>
+          <button class="proto-back" data-next="menu" aria-label="Back">‹</button>
+          <h3 class="proto-h1 proto-h1--condensed" style="margin-top:30px;">Neighborhood</h3>
+          <p class="proto-p">Partner bars, cafés and safe spots near Soi Nana.</p>
+          <div class="proto-map">
+            <svg viewBox="0 0 240 180" preserveAspectRatio="none">
+              <rect width="240" height="180" fill="#E7EDE6"/>
+              <rect x="18" y="18" width="55" height="42" rx="4" fill="#F4EEE1"/>
+              <rect x="92" y="14" width="62" height="38" rx="4" fill="#F4EEE1"/>
+              <rect x="172" y="30" width="52" height="46" rx="4" fill="#F4EEE1"/>
+              <rect x="28" y="102" width="58" height="52" rx="4" fill="#F4EEE1"/>
+              <rect x="122" y="112" width="72" height="46" rx="4" fill="#F4EEE1"/>
+              <path d="M0,86 C60,70 120,102 240,82" stroke="#fff" stroke-width="8" fill="none"/>
+              <path d="M40,0 L62,180" stroke="#fff" stroke-width="6" fill="none"/>
+              <circle cx="55" cy="44" r="6" fill="var(--coral)"/>
+              <circle cx="118" cy="34" r="6" fill="var(--coral)"/>
+              <circle cx="192" cy="56" r="6" fill="var(--coral)"/>
+              <circle cx="60" cy="126" r="6" fill="var(--coral)"/>
+              <circle cx="152" cy="132" r="6" fill="var(--coral)"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+
+      <ol class="proto-steps">
+        <li data-screen="welcome" class="active">1 · Walk home buddy</li>
+        <li data-screen="menu">2 · Menu</li>
+        <li data-screen="signup">3 · Sign up</li>
+        <li data-screen="terms">4 · Terms &amp; conditions</li>
+        <li data-screen="about">5 · About us</li>
+        <li data-screen="neighborhood">6 · Neighborhood</li>
+      </ol>
+    </div>
+
+    <div class="proto-flow" data-flow="walkhome">
       <div class="proto-device">
         <div class="proto-notch"></div>
 
@@ -1338,13 +1564,100 @@ footer .section__label{color:var(--gold);}
 
       </div>
 
-      <ol class="proto-steps" id="protoSteps">
+      <ol class="proto-steps">
         <li data-screen="home" class="active">1 · Walk home buddy</li>
         <li data-screen="emergency">2 · Emergency button</li>
         <li data-screen="confirm-emergency">3 · Verify it's you</li>
         <li data-screen="activated">4 · Alert activated</li>
         <li data-screen="confirm-safe">5 · Confirm you're safe</li>
         <li data-screen="success">6 · All clear</li>
+      </ol>
+    </div>
+
+    <div class="proto-flow" data-flow="rescue">
+      <div class="proto-device">
+        <div class="proto-notch"></div>
+
+        <div class="proto-screen proto-screen--coral active" data-screen="alert">
+          <div class="proto-brand">Limelight</div>
+          <h3 class="proto-h1 proto-h1--condensed" style="text-align:center; margin-top:24px;">EMERGENCY<br>BUTTON</h3>
+          <div class="proto-siren">🚨</div>
+          <h4 class="proto-h2" style="text-align:center;">**EMERGENCY ALERT**</h4>
+          <p class="proto-p" style="text-align:center;">Jean is in <strong>DANGER</strong> — she needs your help!!</p>
+          <button class="proto-btn proto-btn--gold" data-next="map">Click to See Location</button>
+        </div>
+
+        <div class="proto-screen proto-screen--light" data-screen="map">
+          <div class="proto-brand">Limelight</div>
+          <h3 class="proto-h1 proto-h1--condensed" style="font-size:1.15rem;">Jean's Location</h3>
+          <p class="proto-p" style="margin-bottom:4px;">Here is the fastest route — 1 min away.</p>
+          <div class="proto-map">
+            <svg viewBox="0 0 240 180" preserveAspectRatio="none">
+              <rect width="240" height="180" fill="#E7EDE6"/>
+              <rect x="18" y="16" width="58" height="42" rx="4" fill="#F4EEE1"/>
+              <rect x="150" y="22" width="68" height="48" rx="4" fill="#F4EEE1"/>
+              <rect x="36" y="110" width="62" height="50" rx="4" fill="#F4EEE1"/>
+              <rect x="148" y="104" width="70" height="56" rx="4" fill="#F4EEE1"/>
+              <path d="M0,92 C60,76 120,108 240,86" stroke="#fff" stroke-width="8" fill="none"/>
+              <path d="M70,96 C110,70 160,70 176,96" stroke="var(--mint)" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round" fill="none"/>
+              <circle cx="70" cy="96" r="7" fill="var(--mint)" stroke="#fff" stroke-width="2"/>
+              <text x="70" y="116" text-anchor="middle" font-size="9" fill="#5C6B63" font-family="monospace">YOU</text>
+              <circle cx="176" cy="96" r="7" fill="var(--coral)" stroke="#fff" stroke-width="2"/>
+              <text x="176" y="116" text-anchor="middle" font-size="9" fill="#5C6B63" font-family="monospace">JEAN</text>
+            </svg>
+          </div>
+          <div class="proto-status-box">
+            <span class="proto-status-label">Status</span>
+            The emergency alert has been active for 2:08 — 0 users on their way to rescue.
+          </div>
+          <button class="proto-btn proto-btn--dark" data-next="confirm-rescue">On My Way</button>
+        </div>
+
+        <div class="proto-screen proto-screen--light" data-screen="confirm-rescue">
+          <div class="proto-brand">Limelight</div>
+          <h3 class="proto-h1 proto-h1--condensed" style="font-size:1.15rem;">Jean's Location</h3>
+          <p class="proto-p" style="margin-bottom:4px;">Here is the fastest route — 1 min away.</p>
+          <div class="proto-map">
+            <svg viewBox="0 0 240 180" preserveAspectRatio="none">
+              <rect width="240" height="180" fill="#E7EDE6"/>
+              <rect x="18" y="16" width="58" height="42" rx="4" fill="#F4EEE1"/>
+              <rect x="150" y="22" width="68" height="48" rx="4" fill="#F4EEE1"/>
+              <rect x="36" y="110" width="62" height="50" rx="4" fill="#F4EEE1"/>
+              <rect x="148" y="104" width="70" height="56" rx="4" fill="#F4EEE1"/>
+              <path d="M0,92 C60,76 120,108 240,86" stroke="#fff" stroke-width="8" fill="none"/>
+              <path d="M70,96 C110,70 160,70 176,96" stroke="var(--mint)" stroke-width="3" stroke-dasharray="2 6" stroke-linecap="round" fill="none"/>
+              <circle cx="70" cy="96" r="7" fill="var(--mint)" stroke="#fff" stroke-width="2"/>
+              <text x="70" y="116" text-anchor="middle" font-size="9" fill="#5C6B63" font-family="monospace">YOU</text>
+              <circle cx="176" cy="96" r="7" fill="var(--coral)" stroke="#fff" stroke-width="2"/>
+              <text x="176" y="116" text-anchor="middle" font-size="9" fill="#5C6B63" font-family="monospace">JEAN</text>
+            </svg>
+          </div>
+          <div class="proto-overlay"></div>
+          <div class="proto-modal">
+            <button class="proto-modal__close" data-next="map" aria-label="Close">×</button>
+            <h4 class="proto-modal__title">It's ME code</h4>
+            <p class="proto-modal__text">Enter the code to verify that this is you.</p>
+            <div class="proto-code"><span></span><span></span><span></span><span></span></div>
+            <button class="proto-btn proto-btn--coral" data-next="rescued-success">Confirm</button>
+          </div>
+        </div>
+
+        <div class="proto-screen proto-screen--white" data-screen="rescued-success">
+          <div class="proto-brand">Limelight</div>
+          <div class="proto-confetti">🎉 🎊 🎉 🎊 🎉</div>
+          <div class="proto-smiley proto-smiley--badge">🙂</div>
+          <h3 class="proto-h1 proto-h1--dark" style="text-align:center;">HORAYYY!!</h3>
+          <p class="proto-p proto-p--bold" style="text-align:center;">Thank you for saving someone's life and making our neighborhood SAFE. You did a GREAT JOB!</p>
+          <button class="proto-btn proto-btn--gold" data-next="alert">You're welcome — Back to Home</button>
+        </div>
+
+      </div>
+
+      <ol class="proto-steps">
+        <li data-screen="alert" class="active">1 · Alert received</li>
+        <li data-screen="map">2 · Jean's location</li>
+        <li data-screen="confirm-rescue">3 · Verify it's you</li>
+        <li data-screen="rescued-success">4 · Rescue complete</li>
       </ol>
     </div>
   </div>
@@ -1477,17 +1790,27 @@ footer .section__label{color:var(--gold);}
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ---- LIMELIGHT prototype walkthrough ---- */
-const protoScreens = document.querySelectorAll('.proto-screen');
-const protoSteps = document.querySelectorAll('#protoSteps li');
-function showProtoScreen(name){
-  protoScreens.forEach(s => s.classList.toggle('active', s.dataset.screen === name));
-  protoSteps.forEach(li => li.classList.toggle('active', li.dataset.screen === name));
-}
-document.querySelectorAll('.proto-screen [data-next]').forEach(btn => {
-  btn.addEventListener('click', () => showProtoScreen(btn.dataset.next));
+document.querySelectorAll('.proto-flow').forEach(flow => {
+  const screens = flow.querySelectorAll('.proto-screen');
+  const steps = flow.querySelectorAll('.proto-steps li');
+  function showProtoScreen(name){
+    screens.forEach(s => s.classList.toggle('active', s.dataset.screen === name));
+    steps.forEach(li => li.classList.toggle('active', li.dataset.screen === name));
+  }
+  flow.querySelectorAll('.proto-screen [data-next]').forEach(btn => {
+    btn.addEventListener('click', () => showProtoScreen(btn.dataset.next));
+  });
+  steps.forEach(li => {
+    li.addEventListener('click', () => showProtoScreen(li.dataset.screen));
+  });
 });
-protoSteps.forEach(li => {
-  li.addEventListener('click', () => showProtoScreen(li.dataset.screen));
+
+document.querySelectorAll('.proto-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.proto-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('.proto-flow').forEach(f => f.classList.toggle('active', f.dataset.flow === tab.dataset.flow));
+  });
 });
 
 /* ---- Offer cards: jump to section, optionally applying a journey filter ---- */
