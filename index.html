@@ -429,12 +429,22 @@ section{padding:80px 6vw;}
 .med-box rect{fill:var(--bg-raised); stroke:var(--border-strong); stroke-width:1.5;}
 .med-box text{font-family:var(--mono); font-size:13px; fill:var(--cream); text-transform:uppercase; letter-spacing:0.04em;}
 .med-path{stroke:var(--text-soft); stroke-width:2; fill:none; opacity:0.35; transition:all 0.3s;}
-.med-path.path-direct{stroke-dasharray:5 6;}
+.med-path.path-indirect{stroke-dasharray:1 7; stroke-linecap:round;}
 .med-path.is-active.path-indirect{stroke:var(--mint); opacity:1; stroke-width:2.5;}
 .med-path.is-active.path-direct{stroke:var(--coral); opacity:1; stroke-width:2.5;}
 .med-arrow{fill:var(--text-soft); opacity:0.35; transition:all 0.3s;}
 .med-arrow.is-active.indirect{fill:var(--mint); opacity:1;}
 .med-arrow.is-active.direct{fill:var(--coral); opacity:1;}
+.med-check{
+  font-family:var(--mono);
+  font-size:13px;
+  font-weight:600;
+  fill:var(--text-soft);
+  opacity:0;
+  transition:opacity 0.3s, fill 0.3s;
+}
+.med-check.indirect.is-active{fill:var(--mint); opacity:1;}
+.med-check.direct.is-active{fill:var(--coral); opacity:1;}
 .med-diagram__caption{
   margin-top:18px;
   font-size:0.95rem;
@@ -1149,20 +1159,23 @@ footer .section__label{color:var(--gold);}
           <button class="med-toggle active" data-path="indirect">Indirect path — via decentering</button>
           <button class="med-toggle" data-path="direct">Direct path — mindfulness alone</button>
         </div>
-        <svg class="med-svg" viewBox="0 0 640 190" role="img" aria-label="Mediation diagram showing how mindfulness relates to rumination, directly and via decentering">
-          <g class="med-box"><rect x="10" y="65" width="170" height="60" rx="8"/><text x="95" y="100" text-anchor="middle">Mindfulness</text></g>
-          <g class="med-box"><rect x="235" y="65" width="170" height="60" rx="8"/><text x="320" y="100" text-anchor="middle">Decentering</text></g>
-          <g class="med-box"><rect x="460" y="65" width="170" height="60" rx="8"/><text x="545" y="100" text-anchor="middle">Rumination</text></g>
+        <svg class="med-svg" viewBox="0 0 640 224" role="img" aria-label="Mediation diagram showing how mindfulness relates to rumination, directly and via decentering">
+          <g class="med-box"><rect x="235" y="10" width="170" height="60" rx="8"/><text x="320" y="45" text-anchor="middle">Decentering</text></g>
+          <g class="med-box"><rect x="10" y="148" width="170" height="60" rx="8"/><text x="95" y="183" text-anchor="middle">Mindfulness</text></g>
+          <g class="med-box"><rect x="460" y="148" width="170" height="60" rx="8"/><text x="545" y="183" text-anchor="middle">Rumination</text></g>
 
-          <path class="med-path path-indirect is-active" id="pathA" d="M180,95 L235,95"/>
-          <polygon class="med-arrow indirect is-active" id="arrowA" points="228,89 238,95 228,101"/>
-          <path class="med-path path-indirect is-active" id="pathB" d="M405,95 L460,95"/>
-          <polygon class="med-arrow indirect is-active" id="arrowB" points="453,89 463,95 453,101"/>
+          <path class="med-path path-indirect is-active" id="pathA" d="M180,148 L235,70"/>
+          <polygon class="med-arrow indirect is-active" id="arrowA" points="235,70 232,80 226,75"/>
+          <path class="med-path path-indirect is-active" id="pathB" d="M405,70 L460,148"/>
+          <polygon class="med-arrow indirect is-active" id="arrowB" points="460,148 451,135 457,130"/>
+          <text class="med-check indirect is-active" x="178" y="100" text-anchor="middle">✓ a</text>
+          <text class="med-check indirect is-active" x="462" y="100" text-anchor="middle">✓ b</text>
 
-          <path class="med-path path-direct" id="pathC" d="M95,65 C 95,15 545,15 545,65"/>
-          <polygon class="med-arrow direct" id="arrowC" points="538,62 548,68 540,75"/>
+          <path class="med-path path-direct" id="pathC" d="M180,178 L460,178"/>
+          <polygon class="med-arrow direct" id="arrowC" points="460,178 451,172 451,184"/>
+          <text class="med-check direct" x="320" y="170" text-anchor="middle">✓ c'</text>
         </svg>
-        <p class="med-diagram__caption" id="medCaption">Decentering carries mindfulness's effect: more mindfulness related to more decentering, which in turn related to lower rumination.</p>
+        <p class="med-diagram__caption" id="medCaption">Decentering carries mindfulness's effect: more mindfulness related to more decentering (path a), which in turn related to lower rumination (path b).</p>
       </div>
 
     </div>
@@ -1549,8 +1562,8 @@ document.querySelectorAll('.node').forEach(node => {
 const medToggles = document.querySelectorAll('.med-toggle');
 const medCaption = document.getElementById('medCaption');
 const captions = {
-  indirect: "Decentering carries mindfulness's effect: more mindfulness related to more decentering, which in turn related to lower rumination.",
-  direct: "On its own, mindfulness showed a small positive association with rumination — awareness without distance can sometimes backfire."
+  indirect: "Decentering carries mindfulness's effect: more mindfulness related to more decentering (path a), which in turn related to lower rumination (path b).",
+  direct: "On its own, mindfulness showed a small positive direct association with rumination (path c′) — awareness without distance can sometimes backfire."
 };
 medToggles.forEach(btn => {
   btn.addEventListener('click', () => {
@@ -1558,7 +1571,7 @@ medToggles.forEach(btn => {
     btn.classList.add('active');
     const path = btn.dataset.path;
     medCaption.textContent = captions[path];
-    document.querySelectorAll('.med-path, .med-arrow').forEach(el => el.classList.remove('is-active'));
+    document.querySelectorAll('.med-path, .med-arrow, .med-check').forEach(el => el.classList.remove('is-active'));
     if(path === 'indirect'){
       document.querySelectorAll('.path-indirect, .indirect').forEach(el => el.classList.add('is-active'));
     } else {
