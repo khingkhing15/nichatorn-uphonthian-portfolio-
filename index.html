@@ -192,9 +192,29 @@ section{padding:80px 6vw;}
   margin-bottom:28px;
   max-width:18ch;
 }
+.section__label-row{
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  margin-bottom:14px;
+}
+.section__label-row .section__label{margin-bottom:0;}
+.lens-tag{
+  display:inline-block;
+  font-family:var(--mono);
+  font-size:0.62rem;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  border:1px solid var(--border-strong);
+  border-radius:999px;
+  padding:4px 12px;
+  color:var(--text-soft);
+}
+.lens-tag--psych{color:var(--peri); border-color:rgba(157,180,232,0.4);}
+.lens-tag--design{color:var(--mint); border-color:rgba(127,217,174,0.4);}
+.lens-tag--delivery{color:var(--coral); border-color:rgba(238,134,105,0.4);}
 
 /* ===== ABOUT ===== */
-.about{display:flex;gap:48px;flex-wrap:wrap;}
+.about__row{display:flex;gap:48px;flex-wrap:wrap;}
+.about .bridge__inner{margin-top:40px;}
 .about__text{flex:2;min-width:280px;}
 .about__text p{font-size:1.02rem; color:var(--text-soft); max-width:62ch;}
 .about__text p + p{margin-top:18px;}
@@ -815,6 +835,58 @@ section{padding:80px 6vw;}
   display:flex; align-items:center; justify-content:center;
 }
 
+/* ===== VISION (STORYTELLING) ===== */
+.vision__inner{max-width:70ch;}
+.vision__lead{
+  font-family:var(--serif);
+  font-weight:300;
+  font-size:clamp(1.2rem,2.6vw,1.6rem);
+  line-height:1.45;
+  color:var(--cream);
+  margin-bottom:22px;
+}
+.vision__lead em{font-style:italic; color:var(--gold); font-weight:600;}
+.vision__inner p{font-size:1rem; color:var(--text-soft); max-width:66ch;}
+.vision__inner p + p{margin-top:18px;}
+.vision__inner strong{color:var(--cream); font-weight:600;}
+.vision__inner em{font-style:italic; color:var(--gold);}
+
+/* ===== BRIDGE (INTERDISCIPLINARY STATEMENT) ===== */
+.bridge__heading{margin-top:8px; margin-bottom:14px;}
+.bridge__inner{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  flex-wrap:wrap;
+  background:var(--bg-raised);
+  border:1px dashed var(--border-strong);
+  border-radius:12px;
+  padding:32px;
+}
+.bridge__side{flex:1; min-width:200px;}
+.bridge__result{flex:1.5; min-width:240px;}
+.bridge__label{
+  display:block;
+  font-family:var(--mono);
+  font-size:0.66rem;
+  text-transform:uppercase;
+  letter-spacing:0.14em;
+  color:var(--mint);
+  margin-bottom:8px;
+}
+.bridge__label--gold{color:var(--gold);}
+.bridge__side p, .bridge__result p{font-size:0.92rem; color:var(--text-soft); margin:0;}
+.bridge__op{
+  font-family:var(--serif);
+  font-weight:700;
+  font-size:1.6rem;
+  color:var(--text-soft);
+  flex-shrink:0;
+}
+@media (max-width:780px){
+  .bridge__op{display:none;}
+}
+
 /* ===== OFFER / WHAT I BRING ===== */
 .offer-grid{
   display:grid;
@@ -941,9 +1013,10 @@ footer .section__label{color:var(--gold);}
   <div class="nav__name">Nichatorn Uphonthian</div>
   <div class="nav__links" id="navLinks">
     <span class="nav__indicator" id="navIndicator"></span>
-    <a href="#offer">Offer</a>
-    <a href="#about">About</a>
     <a href="#education">Education</a>
+    <a href="#offer">Offer</a>
+    <a href="#vision">Vision</a>
+    <a href="#about">About</a>
     <a href="#journey">Journey</a>
     <a href="#research">Research</a>
     <a href="#case-study">Case Study</a>
@@ -1047,6 +1120,23 @@ footer .section__label{color:var(--gold);}
   </div>
 </section>
 
+<section id="education" class="reveal">
+  <div class="section__label">Education</div>
+  <h2 class="section__title">From global studies to psychology</h2>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <h3>MSc Psychology Conversion</h3>
+      <div class="edu-meta">University of Exeter · Sep 2024 – Dec 2025 · Completed</div>
+      <p>A research-led conversion programme building core psychological knowledge and methods, with a particular focus on mental health and wellbeing — bridging into a career already rooted in human rights advocacy, disability inclusion and community-based research.</p>
+    </div>
+    <div class="edu-card">
+      <h3>BA Global Studies &amp; Social Entrepreneurship</h3>
+      <div class="edu-meta">School of Global Studies, Thammasat University · Aug 2019 – Aug 2023</div>
+      <p>A multidisciplinary degree spanning sustainable development, urban studies and social enterprise — the launchpad for fieldwork, exchanges and community projects across Thailand and abroad.</p>
+    </div>
+  </div>
+</section>
+
 <section id="offer" class="offer reveal">
   <div class="section__label">What I Offer</div>
   <h2 class="section__title">Five things I bring to a team</h2>
@@ -1084,43 +1174,55 @@ footer .section__label{color:var(--gold);}
   </div>
 </section>
 
-<section id="about" class="about reveal">
-  <div class="about__text">
-    <div class="section__label">About</div>
-    <h2 class="section__title">Psychology, social entrepreneurship, and six years of human-centric work</h2>
-    <p>I'm a Psychology graduate (MSc, University of Exeter) with a background in Social Entrepreneurship — six years designing and delivering wellbeing, community engagement and social impact work across Thailand, Japan and the UK, from a 30-person exhibition team in Bangkok to UX research on perceived safety in a Bangkok neighbourhood.</p>
-    <p>My dissertation research focused on mindfulness, decentering and rumination — and that evidence-led approach runs through everything I do, whether it's a UX case study tested with real participants or a community project designed for sustainable handover rather than a one-off event.</p>
-    <p>I'm drawn to work where psychology, human rights and inclusive design meet — and I bring practical tools to make that real, from SQL, Tableau and Qualtrics for data, to Adobe XD for prototyping. I'm currently looking for roles where research rigour, design practice and a genuine commitment to inclusion can contribute to products, services or programmes that matter to the people who use them.</p>
+<section id="vision" class="vision reveal">
+  <div class="section__label">A Note on Why</div>
+  <h2 class="section__title">The question I get asked most</h2>
+  <div class="vision__inner">
+    <p class="vision__lead">"Psychology <em>and</em> social entrepreneurship — so what does that actually make you?" It's the question almost everyone asks when they see my background, and honestly, there isn't a tidy job title for the answer.</p>
+    <p>Here's the closest I've got: I want to be a <strong>changemaker</strong> — someone who uses research, design and community-building to make the world a little better, in whatever form that takes. Mental health is where that drive feels most personal to me, but the same lens applies anywhere people are navigating systems that weren't quite built with them in mind — a nightlife area that feels unsafe after dark, a community event that needs to outlive its own funding, a product that gets the data right but misses how people actually feel.</p>
+    <p>My interdisciplinary background isn't a detour between two unrelated degrees — it's the toolkit. Psychology gives me the <em>why</em>: an understanding of how people think, feel and behave. Social entrepreneurship gives me the <em>how</em>: the tools to build something — a programme, a product, a piece of research — around that understanding, and to make it last.</p>
   </div>
-  <dl class="about__facts">
-    <dt>Based in</dt>
-    <dd>Exeter, England, UK — open to relocating anywhere</dd>
-    <dt>Currently</dt>
-    <dd>MSc Psychology Conversion, University of Exeter (completed 2025) · Front of House, Pho Restaurant</dd>
-    <dt>Areas of focus</dt>
-    <dd>UX research &amp; design · Behavioural &amp; social research · Human rights · Inclusive community design</dd>
-    <dt>Languages of work</dt>
-    <dd>English · Thai</dd>
-    <dt>Recognised in</dt>
-    <dd>Bangkok Post · Time Out Bangkok · The Standard · Urban Creature · Thai PBS</dd>
-  </dl>
 </section>
 
-
-
-<section id="education" class="reveal">
-  <div class="section__label">Education</div>
-  <h2 class="section__title">From global studies to psychology</h2>
-  <div class="edu-grid">
-    <div class="edu-card">
-      <h3>MSc Psychology Conversion</h3>
-      <div class="edu-meta">University of Exeter · Sep 2024 – Dec 2025 · Completed</div>
-      <p>A research-led conversion programme building core psychological knowledge and methods, with a particular focus on mental health and wellbeing — bridging into a career already rooted in human rights advocacy, disability inclusion and community-based research.</p>
+<section id="about" class="about reveal">
+  <div class="about__row">
+    <div class="about__text">
+      <div class="section__label">About</div>
+      <h2 class="section__title">Psychology, social entrepreneurship, and six years of human-centric work</h2>
+      <p>I'm a Psychology graduate (MSc, University of Exeter) with a background in Social Entrepreneurship — six years designing and delivering wellbeing, community engagement and social impact work across Thailand, Japan and the UK, from a 30-person exhibition team in Bangkok to UX research on perceived safety in a Bangkok neighbourhood.</p>
+      <p>My dissertation research focused on mindfulness, decentering and rumination — and that evidence-led approach runs through everything I do, whether it's a UX case study tested with real participants or a community project designed for sustainable handover rather than a one-off event.</p>
+      <p>I'm drawn to work where psychology, human rights and inclusive design meet — and I bring practical tools to make that real, from SQL, Tableau and Qualtrics for data, to Adobe XD for prototyping. I'm currently looking for roles where research rigour, design practice and a genuine commitment to inclusion can contribute to products, services or programmes that matter to the people who use them.</p>
     </div>
-    <div class="edu-card">
-      <h3>BA Global Studies &amp; Social Entrepreneurship</h3>
-      <div class="edu-meta">School of Global Studies, Thammasat University · Aug 2019 – Aug 2023</div>
-      <p>A multidisciplinary degree spanning sustainable development, urban studies and social enterprise — the launchpad for fieldwork, exchanges and community projects across Thailand and abroad.</p>
+    <dl class="about__facts">
+      <dt>Based in</dt>
+      <dd>Exeter, England, UK — open to relocating anywhere</dd>
+      <dt>Currently</dt>
+      <dd>MSc Psychology Conversion, University of Exeter (completed 2025) · Front of House, Pho Restaurant</dd>
+      <dt>Areas of focus</dt>
+      <dd>UX research &amp; design · Behavioural &amp; social research · Human rights · Inclusive community design</dd>
+      <dt>Languages of work</dt>
+      <dd>English · Thai</dd>
+      <dt>Recognised in</dt>
+      <dd>Bangkok Post · Time Out Bangkok · The Standard · Urban Creature · Thai PBS</dd>
+    </dl>
+  </div>
+  <div class="bridge__heading">
+    <span class="bridge__label">How the two connect</span>
+  </div>
+  <div class="bridge__inner">
+    <div class="bridge__side">
+      <span class="bridge__label">Psychology</span>
+      <p>Understanding why people think, feel and act the way they do.</p>
+    </div>
+    <div class="bridge__op">+</div>
+    <div class="bridge__side">
+      <span class="bridge__label">Social Entrepreneurship</span>
+      <p>Building the programmes, products and ventures around that understanding.</p>
+    </div>
+    <div class="bridge__op">=</div>
+    <div class="bridge__result">
+      <span class="bridge__label bridge__label--gold">What that looks like in practice</span>
+      <p>Research-led design and community work grounded in evidence about how people actually behave — a safety app reframed around perceived (not actual) threat, and a community exhibition rebuilt around legitimacy rather than authority.</p>
     </div>
   </div>
 </section>
@@ -1267,7 +1369,10 @@ footer .section__label{color:var(--gold);}
 </section>
 
 <section id="research" class="reveal">
-  <div class="section__label">Featured Research</div>
+  <div class="section__label-row">
+    <div class="section__label">Featured Research</div>
+    <span class="lens-tag lens-tag--psych">The psychology</span>
+  </div>
   <h2 class="section__title">MSc Dissertation: Decentering, Mindfulness &amp; Rumination</h2>
   <div class="diss-grid">
     <div class="diss-text">
@@ -1335,7 +1440,10 @@ footer .section__label{color:var(--gold);}
 </section>
 
 <section id="case-study" class="reveal">
-  <div class="section__label">Featured UX Case Study</div>
+  <div class="section__label-row">
+    <div class="section__label">Featured UX Case Study</div>
+    <span class="lens-tag lens-tag--design">Psychology → design</span>
+  </div>
   <h2 class="section__title">LIMELIGHT: Designing for Perceived Safety in Bangkok</h2>
   <div class="diss-grid">
     <div class="diss-text">
@@ -1665,7 +1773,10 @@ footer .section__label{color:var(--gold);}
 </section>
 
 <section id="project" class="reveal">
-  <div class="section__label">Featured Project</div>
+  <div class="section__label-row">
+    <div class="section__label">Featured Project</div>
+    <span class="lens-tag lens-tag--delivery">Social entrepreneurship → delivery</span>
+  </div>
   <h2 class="section__title">Nang Lerng Immersive Exhibition: Building for Handover</h2>
   <div class="diss-grid">
     <div class="diss-text">
