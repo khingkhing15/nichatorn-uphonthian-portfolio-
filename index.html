@@ -50,6 +50,9 @@ nav{
   font-weight:600;
   font-size:1.05rem;
   letter-spacing:0.02em;
+  text-decoration:none;
+  color:var(--cream);
+  cursor:pointer;
 }
 .nav__links{
   position:relative;
@@ -1005,22 +1008,103 @@ footer .section__label{color:var(--gold);}
   .card{transition:none;}
   html{scroll-behavior:auto;}
 }
+
+/* ===== COLLAPSIBLE PROJECT SECTIONS ===== */
+.project-toggle{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:16px;
+  cursor:pointer;
+  padding-bottom:4px;
+  user-select:none;
+}
+.project-toggle .section__title{margin-bottom:0;}
+.toggle-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  font-family:var(--mono);
+  font-size:0.72rem;
+  text-transform:uppercase;
+  letter-spacing:0.1em;
+  color:var(--gold);
+  background:none;
+  border:1px dashed var(--gold);
+  border-radius:999px;
+  padding:9px 18px;
+  cursor:pointer;
+  transition:background 0.2s, color 0.2s;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.toggle-btn:hover{background:var(--gold); color:var(--bg);}
+.toggle-icon{
+  display:inline-block;
+  transition:transform 0.35s cubic-bezier(.65,0,.35,1);
+}
+.toggle-btn.open .toggle-icon{transform:rotate(45deg);}
+.project-body{
+  overflow:hidden;
+  max-height:0;
+  transition:max-height 0.55s cubic-bezier(.65,0,.35,1), opacity 0.4s ease;
+  opacity:0;
+}
+.project-body.open{
+  max-height:9999px;
+  opacity:1;
+}
+.project-preview{
+  margin-top:24px;
+  padding:22px 26px;
+  background:var(--bg-raised);
+  border-radius:10px;
+  border:1px solid var(--border);
+  display:flex;
+  gap:32px;
+  flex-wrap:wrap;
+  align-items:flex-start;
+}
+.project-preview__stat{flex:1; min-width:140px;}
+.project-preview__stat dt{
+  font-family:var(--mono);
+  font-size:0.62rem;
+  text-transform:uppercase;
+  letter-spacing:0.1em;
+  color:var(--text-soft);
+  margin-bottom:4px;
+}
+.project-preview__stat dd{
+  font-family:var(--serif);
+  font-size:1rem;
+  color:var(--cream);
+}
+.project-preview__finding{
+  flex:2; min-width:200px;
+  font-family:var(--serif);
+  font-size:0.96rem;
+  color:var(--text-soft);
+  line-height:1.5;
+  border-left:2px solid var(--border-strong);
+  padding-left:20px;
+}
+.project-preview__finding strong{color:var(--cream);}
+
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="nav__name">Nichatorn Uphonthian</div>
+  <a href="#" class="nav__name" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Nichatorn Uphonthian</a>
   <div class="nav__links" id="navLinks">
     <span class="nav__indicator" id="navIndicator"></span>
     <a href="#education">Education</a>
     <a href="#offer">Offer</a>
     <a href="#vision">Vision</a>
     <a href="#about">About</a>
-    <a href="#journey">Journey</a>
-    <a href="#research">Research</a>
-    <a href="#case-study">Case Study</a>
-    <a href="#project">Project</a>
+    <a href="#journey">Experience</a>
+    <a href="#projects" class="nav__projects">Projects</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
@@ -1141,19 +1225,19 @@ footer .section__label{color:var(--gold);}
   <div class="section__label">What I Offer</div>
   <h2 class="section__title">Five things I bring to a team</h2>
   <div class="offer-grid">
-    <a class="offer-card" href="#case-study" data-jump>
+    <a class="offer-card" href="#projects" data-jump data-open="body-limelight">
       <div class="offer-card__tag">01 · UX Research &amp; Design</div>
       <h3>Research-led design</h3>
       <p>Mixed-methods research and Adobe XD prototyping, tested with real users down to the second.</p>
       <span class="offer-card__cta">LIMELIGHT case study →</span>
     </a>
-    <a class="offer-card" href="#research" data-jump>
+    <a class="offer-card" href="#projects" data-jump data-open="body-research">
       <div class="offer-card__tag">02 · Data &amp; Behavioural Research</div>
       <h3>Evidence you can act on</h3>
       <p>Survey design, SQL, Tableau and statistical analysis — turning data into findings that hold up.</p>
       <span class="offer-card__cta">MSc dissertation →</span>
     </a>
-    <a class="offer-card" href="#project" data-jump>
+    <a class="offer-card" href="#projects" data-jump data-open="body-nangloeng">
       <div class="offer-card__tag">03 · Project &amp; Team Leadership</div>
       <h3>Delivery, end to end</h3>
       <p>Leading a 30-person team from concept to a 7-day exhibition — then handing it over so it lasts.</p>
@@ -1188,22 +1272,22 @@ footer .section__label{color:var(--gold);}
   <div class="about__row">
     <div class="about__text">
       <div class="section__label">About</div>
-      <h2 class="section__title">Psychology, social entrepreneurship, and six years of human-centric work</h2>
-      <p>I'm a Psychology graduate (MSc, University of Exeter) with a background in Social Entrepreneurship — six years designing and delivering wellbeing, community engagement and social impact work across Thailand, Japan and the UK, from a 30-person exhibition team in Bangkok to UX research on perceived safety in a Bangkok neighbourhood.</p>
-      <p>My dissertation research focused on mindfulness, decentering and rumination — and that evidence-led approach runs through everything I do, whether it's a UX case study tested with real participants or a community project designed for sustainable handover rather than a one-off event.</p>
-      <p>I'm drawn to work where psychology, human rights and inclusive design meet — and I bring practical tools to make that real, from SQL, Tableau and Qualtrics for data, to Adobe XD for prototyping. I'm currently looking for roles where research rigour, design practice and a genuine commitment to inclusion can contribute to products, services or programmes that matter to the people who use them.</p>
+      <h2 class="section__title">Psychology, Social Entrepreneurship, and Human-Centred Change</h2>
+      <p>I'm a psychology graduate with a background in social entrepreneurship and over six years of experience researching, designing, and delivering initiatives that improve people's experiences, wellbeing, and sense of belonging — across community development, UX design, and social impact work in Thailand, Japan, and the UK.</p>
+      <p>What connects these experiences is a simple question: <strong>how can we better understand people, and design systems and communities around their needs?</strong> My approach combines the analytical rigour of psychology with the action-oriented mindset of social entrepreneurship — moving between research and implementation, translating evidence into solutions that are practical, inclusive, and meaningful.</p>
+      <p>I'm drawn to the intersection of psychology, human-centred research, and social impact, and I'm looking for roles where that combination can contribute to work that genuinely matters to the people it serves.</p>
     </div>
     <dl class="about__facts">
       <dt>Based in</dt>
-      <dd>Exeter, England, UK — open to relocating anywhere</dd>
-      <dt>Currently</dt>
-      <dd>MSc Psychology Conversion, University of Exeter (completed 2025) · Front of House, Pho Restaurant</dd>
-      <dt>Areas of focus</dt>
-      <dd>UX research &amp; design · Behavioural &amp; social research · Human rights · Inclusive community design</dd>
-      <dt>Languages of work</dt>
+      <dd>Exeter, England, UK · Open to relocation</dd>
+      <dt>Areas of Focus</dt>
+      <dd>Human-Centred Research · UX Research &amp; Design · Behavioural Insights · Community &amp; Social Impact</dd>
+      <dt>Tools &amp; Methods</dt>
+      <dd>Qualtrics · SPSS · Tableau · SQL · Adobe XD · User Interviews · Survey Design · Usability Testing</dd>
+      <dt>Languages</dt>
       <dd>English · Thai</dd>
-      <dt>Recognised in</dt>
-      <dd>Bangkok Post · Time Out Bangkok · The Standard · Urban Creature · Thai PBS</dd>
+      <dt>Featured in</dt>
+      <dd><a href="#projects" data-open="body-nangloeng" style="color:var(--cream);text-decoration:none;border-bottom:1px dashed var(--border-strong);cursor:pointer;">Bangkok Post · Time Out Bangkok · The Standard · Urban Creature · Thai PBS</a></dd>
     </dl>
   </div>
   <div class="bridge__heading">
@@ -1228,7 +1312,7 @@ footer .section__label{color:var(--gold);}
 </section>
 
 <section id="journey">
-  <div class="section__label">The Journey</div>
+  <div class="section__label">Experience</div>
   <h2 class="section__title">Fifteen postings, five threads</h2>
 
   <div class="tabs" role="tablist" aria-label="Filter experience by category" id="tabs">
@@ -1273,7 +1357,7 @@ footer .section__label{color:var(--gold);}
       <div class="card__org">Project Manager / Product Owner · Oct 2022–Apr 2023</div>
       <p class="card__desc">Led a 30-person team across five departments to deliver a 7-day, 11-programme exhibition — launching four new revenue activities (~29,250 THB reinvested), growing reach to 230.6K (+848%), and securing coverage from 18 of 63 media outlets contacted.</p>
       <div class="card__tags"><span>Project Management</span><span>Team Leadership</span><span>Community Engagement</span></div>
-      <a class="card__link" href="#project">Read the full project story ↓</a>
+      <a class="card__link" href="#projects" data-open="body-nangloeng">Read the full project story ↓</a>
     </article>
 
     <article class="card card--mint" data-cat="community" data-loc="bangkok">
@@ -1330,7 +1414,7 @@ footer .section__label{color:var(--gold);}
       <div class="card__org">School of Global Studies, Thammasat University · Feb–May 2021</div>
       <p class="card__desc">Used design-thinking and mixed-methods UX research — interviews, observation and police crime data — to design and usability-test a safety service for tourists in Bangkok's Soi Nana.</p>
       <div class="card__tags"><span>Design Thinking</span><span>UX Research</span><span>Usability Testing</span></div>
-      <a class="card__link" href="#case-study">Read the full case study ↓</a>
+      <a class="card__link" href="#projects" data-open="body-limelight">Read the full case study ↓</a>
     </article>
 
     <article class="card card--mint" data-cat="research advocacy">
@@ -1368,12 +1452,31 @@ footer .section__label{color:var(--gold);}
   </div>
 </section>
 
+<section id="projects" class="reveal">
+  <div class="section__label">Projects</div>
+  <h2 class="section__title">Featured work</h2>
+
 <section id="research" class="reveal">
-  <div class="section__label-row">
-    <div class="section__label">Featured Research</div>
-    <span class="lens-tag lens-tag--psych">The psychology</span>
+  <div class="project-toggle" data-target="body-research">
+    <div>
+      <div class="section__label-row">
+        <div class="section__label">Featured Research</div>
+        <span class="lens-tag lens-tag--psych">The psychology</span>
+      </div>
+      <h2 class="section__title">MSc Dissertation: Decentering, Mindfulness &amp; Rumination</h2>
+    </div>
+    <button class="toggle-btn" data-target="body-research" aria-expanded="false">
+      <span>Read the research</span> <span class="toggle-icon">+</span>
+    </button>
   </div>
-  <h2 class="section__title">MSc Dissertation: Decentering, Mindfulness &amp; Rumination</h2>
+  <div class="project-preview" data-target="body-research" style="cursor:pointer;">
+    <div class="project-preview__stat"><dt>Sample</dt><dd>283 UK adults, 18–30</dd></div>
+    <div class="project-preview__stat"><dt>Method</dt><dd>Mediation analysis</dd></div>
+    <div class="project-preview__stat"><dt>Focus</dt><dd>Mindfulness · Decentering · Rumination</dd></div>
+    <div class="project-preview__finding"><strong>Key finding:</strong> Decentering — not awareness alone — explains why mindfulness relates to lower rumination.</div>
+  </div>
+  <div class="project-body" id="body-research">
+  <div style="height:32px;"></div>
   <div class="diss-grid">
     <div class="diss-text">
       <p>My dissertation asked a question I found both scientifically and personally compelling: how does mindfulness relate to repetitive negative thinking — and what process might explain that link? I focused on three constructs: <strong>mindfulness</strong>, <strong>decentering</strong> (the ability to step back from thoughts and view them as temporary mental events rather than facts), and <strong>rumination</strong>.</p>
@@ -1437,14 +1540,30 @@ footer .section__label{color:var(--gold);}
       </div>
     </div>
   </div>
+  </div><!-- /body-research -->
 </section>
 
 <section id="case-study" class="reveal">
-  <div class="section__label-row">
-    <div class="section__label">Featured UX Case Study</div>
-    <span class="lens-tag lens-tag--design">Psychology → design</span>
+  <div class="project-toggle" data-target="body-limelight">
+    <div>
+      <div class="section__label-row">
+        <div class="section__label">Featured UX Case Study</div>
+        <span class="lens-tag lens-tag--design">Psychology → design</span>
+      </div>
+      <h2 class="section__title">LIMELIGHT: Designing for Perceived Safety in Bangkok</h2>
+    </div>
+    <button class="toggle-btn" data-target="body-limelight" aria-expanded="false">
+      <span>Explore + try prototype</span> <span class="toggle-icon">+</span>
+    </button>
   </div>
-  <h2 class="section__title">LIMELIGHT: Designing for Perceived Safety in Bangkok</h2>
+  <div class="project-preview" data-target="body-limelight" style="cursor:pointer;">
+    <div class="project-preview__stat"><dt>Method</dt><dd>Mixed-methods UX research</dd></div>
+    <div class="project-preview__stat"><dt>Usability</dt><dd>86% SUS · 7s alert</dd></div>
+    <div class="project-preview__stat"><dt>Tools</dt><dd>Adobe XD · Miro</dd></div>
+    <div class="project-preview__finding"><strong>Key finding:</strong> Tourists' fear came from perceived threat, not actual crime — reframing the brief from policing to companionship.</div>
+  </div>
+  <div class="project-body" id="body-limelight">
+  <div style="height:32px;"></div>
   <div class="diss-grid">
     <div class="diss-text">
       <p>As part of a design-thinking research project, my partner and I set out to understand why tourists felt unsafe walking around <strong>Soi Nana</strong>, a nightlife district in Bangkok — even though it has a reputation as a vibrant, welcoming area. We combined seven in-depth interviews, four ad-hoc street interviews, direct observation across two field visits, and official crime-report data that we requested directly from the local police station.</p>
@@ -1769,15 +1888,31 @@ footer .section__label{color:var(--gold);}
       </ol>
     </div>
   </div>
+  </div><!-- /body-limelight -->
 
 </section>
 
 <section id="project" class="reveal">
-  <div class="section__label-row">
-    <div class="section__label">Featured Project</div>
-    <span class="lens-tag lens-tag--delivery">Social entrepreneurship → delivery</span>
+  <div class="project-toggle" data-target="body-nangloeng">
+    <div>
+      <div class="section__label-row">
+        <div class="section__label">Featured Project</div>
+        <span class="lens-tag lens-tag--delivery">Social entrepreneurship → delivery</span>
+      </div>
+      <h2 class="section__title">Nang Loeng Immersive Exhibition: Building for Handover</h2>
+    </div>
+    <button class="toggle-btn" data-target="body-nangloeng" aria-expanded="false">
+      <span>Read the full story</span> <span class="toggle-icon">+</span>
+    </button>
   </div>
-  <h2 class="section__title">Nang Lerng Immersive Exhibition: Building for Handover</h2>
+  <div class="project-preview" data-target="body-nangloeng" style="cursor:pointer;">
+    <div class="project-preview__stat"><dt>Team</dt><dd>30 people · 5 depts</dd></div>
+    <div class="project-preview__stat"><dt>Reach</dt><dd>230.6K (+848%)</dd></div>
+    <div class="project-preview__stat"><dt>Media</dt><dd>18 of 63 outlets</dd></div>
+    <div class="project-preview__finding"><strong>Key lesson:</strong> Authority doesn't make a leader — legitimacy built through relationships is what makes cross-functional collaboration work.</div>
+  </div>
+  <div class="project-body" id="body-nangloeng">
+  <div style="height:32px;"></div>
   <div class="diss-grid">
     <div class="diss-text">
       <p>As Project Manager, I led a 30-person team across five departments — Marketing, Media Production, Design, Logistics and Business Partnerships — through an 8-phase, 7-month journey (research, recruitment, team-building, planning, promotion, design, pre-execution and execution) to deliver a 7-day, 11-programme exhibition celebrating <strong>Nang Loeng</strong>, one of Bangkok's oldest communities.</p>
@@ -1820,6 +1955,8 @@ footer .section__label{color:var(--gold);}
       </div>
     </div>
   </div>
+  </div><!-- /body-nangloeng -->
+</section>
 </section>
 
 <section class="reveal">
@@ -1921,6 +2058,41 @@ document.querySelectorAll('.proto-tab').forEach(tab => {
     document.querySelectorAll('.proto-tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
     document.querySelectorAll('.proto-flow').forEach(f => f.classList.toggle('active', f.dataset.flow === tab.dataset.flow));
+  });
+});
+
+/* ---- Open collapsible and scroll to it ---- */
+function openProject(bodyId) {
+  const body = document.getElementById(bodyId);
+  const btn  = document.querySelector(`.toggle-btn[data-target="${bodyId}"]`);
+  if (!body || !btn) return;
+  body.classList.add('open');
+  btn.classList.add('open');
+  btn.setAttribute('aria-expanded', 'true');
+  btn.querySelector('.toggle-icon').textContent = '×';
+  setTimeout(() => body.closest('section, div.project-body')
+    ?.previousElementSibling
+    ?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' }), 80);
+}
+
+/* Any link with data-open scrolls to #projects and opens the right collapsible */
+document.querySelectorAll('[data-open]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const bodyId = link.dataset.open;
+    // Scroll to the projects section first, then open after a beat
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+    }
+    setTimeout(() => {
+      openProject(bodyId);
+      // Scroll to the specific project after it opens
+      const body = document.getElementById(bodyId);
+      if (body) {
+        setTimeout(() => body.previousElementSibling?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' }), 400);
+      }
+    }, 350);
   });
 });
 
@@ -2081,6 +2253,36 @@ window.addEventListener('resize', () => {
   moveNavIndicator(active);
 });
 window.addEventListener('load', () => moveNavIndicator(navLinks[0]));
+
+/* ---- Collapsible project sections ---- */
+function toggleProject(target) {
+  const body = document.getElementById(target);
+  const btn  = document.querySelector(`.toggle-btn[data-target="${target}"]`);
+  const preview = document.querySelector(`.project-preview[data-target="${target}"]`);
+  if (!body || !btn) return;
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  btn.classList.toggle('open', !isOpen);
+  btn.setAttribute('aria-expanded', String(!isOpen));
+  btn.querySelector('.toggle-icon').textContent = isOpen ? '+' : '×';
+  if (!isOpen) {
+    setTimeout(() => body.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' }), 60);
+  }
+}
+
+// Button click (stop propagation so parent div doesn't also fire)
+document.querySelectorAll('.toggle-btn').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    toggleProject(btn.dataset.target);
+  });
+});
+
+// Whole preview strip is also clickable
+document.querySelectorAll('.project-preview').forEach(strip => {
+  strip.addEventListener('click', () => toggleProject(strip.dataset.target));
+});
+
 </script>
 
 </body>
