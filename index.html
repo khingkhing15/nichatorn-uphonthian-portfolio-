@@ -300,10 +300,11 @@ section{padding:80px 6vw;}
 .card{
   background:var(--bg-raised);
   border:1px solid var(--border);
+  border-top:3px solid var(--border);
   border-radius:10px;
   padding:24px;
   position:relative;
-  transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, opacity 0.25s ease;
+  transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, opacity 0.25s ease, border-top-color 0.25s ease;
 }
 .card:hover{
   transform:translateY(-4px);
@@ -312,6 +313,17 @@ section{padding:80px 6vw;}
 .card.hidden{display:none;}
 .card.spotlight{
   transform:translateY(-4px);
+  box-shadow:0 0 0 1.5px var(--gold), 0 16px 32px rgba(232,182,94,0.18);
+}
+.card--peri{border-top-color:var(--peri);}
+.card--coral{border-top-color:var(--coral);}
+.card--gold{border-top-color:var(--gold);}
+.card--mint{border-top-color:var(--mint);}
+.card--peri:hover{box-shadow:0 12px 24px rgba(157,180,232,0.18);}
+.card--coral:hover{box-shadow:0 12px 24px rgba(238,134,105,0.18);}
+.card--gold:hover{box-shadow:0 12px 24px rgba(232,182,94,0.18);}
+.card--mint:hover{box-shadow:0 12px 24px rgba(127,217,174,0.18);}
+.card.spotlight.card--peri, .card.spotlight.card--coral, .card.spotlight.card--gold, .card.spotlight.card--mint{
   box-shadow:0 0 0 1.5px var(--gold), 0 16px 32px rgba(232,182,94,0.18);
 }
 .card__stamp{
