@@ -1146,8 +1146,17 @@ footer .section__label{color:var(--gold);}
   gap:32px;
   flex-wrap:wrap;
   align-items:flex-start;
+  position:relative;
+  overflow:hidden;
+  transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
 }
-.project-preview__stat{flex:1; min-width:140px;}
+.project-preview:hover, .project-preview.touched{
+  transform:translateY(-4px);
+  background:var(--bg-raised-2);
+  border-color:var(--mint);
+  box-shadow:0 16px 32px rgba(127,217,174,0.16);
+}
+.project-preview__stat{flex:1; min-width:140px; position:relative; z-index:2;}
 .project-preview__stat dt{
   font-family:var(--mono);
   font-size:0.62rem;
@@ -1169,8 +1178,22 @@ footer .section__label{color:var(--gold);}
   line-height:1.5;
   border-left:2px solid var(--border-strong);
   padding-left:20px;
+  position:relative;
+  z-index:2;
 }
 .project-preview__finding strong{color:var(--cream);}
+
+.scan-line{
+  position:absolute;top:0;bottom:0;left:-4%;width:4%;
+  background:linear-gradient(90deg, rgba(127,217,174,0), rgba(127,217,174,0.45), rgba(127,217,174,0));
+  pointer-events:none;
+  z-index:1;
+}
+.project-preview.scanning .scan-line{animation:scanSweep 0.6s linear;}
+@keyframes scanSweep{
+  0%{left:-4%;}
+  100%{left:104%;}
+}
 
 </style>
 </head>
@@ -1322,7 +1345,7 @@ footer .section__label{color:var(--gold);}
       <dt>Areas of Focus</dt>
       <dd>Human-Centred Research · UX Research &amp; Design · Behavioural Insights · Community &amp; Social Impact</dd>
       <dt>Tools &amp; Methods</dt>
-      <dd>Qualtrics · SPSS · Tableau · SQL · Adobe XD · Figma · Coding (GitHub) · User Interviews · Survey Design · Usability Testing</dd>
+      <dd>Qualtrics · SPSS · Tableau · SQL · Adobe XD · Figma · Version Control (GitHub) · User Interviews · Survey Design · Usability Testing</dd>
       <dt>Languages</dt>
       <dd>English · Thai</dd>
       <dt>Featured in</dt>
@@ -1586,6 +1609,7 @@ footer .section__label{color:var(--gold);}
     </button>
   </div>
   <div class="project-preview" data-target="body-research" style="cursor:pointer;">
+    <div class="scan-line"></div>
     <div class="project-preview__stat"><dt>Sample</dt><dd>283 UK adults, 18–30</dd></div>
     <div class="project-preview__stat"><dt>Method</dt><dd>Mediation analysis</dd></div>
     <div class="project-preview__stat"><dt>Focus</dt><dd>Mindfulness · Decentering · Rumination</dd></div>
@@ -1673,6 +1697,7 @@ footer .section__label{color:var(--gold);}
     </button>
   </div>
   <div class="project-preview" data-target="body-limelight" style="cursor:pointer;">
+    <div class="scan-line"></div>
     <div class="project-preview__stat"><dt>Method</dt><dd>Mixed-methods UX research</dd></div>
     <div class="project-preview__stat"><dt>Usability</dt><dd>86% SUS · 7s alert</dd></div>
     <div class="project-preview__stat"><dt>Tools</dt><dd>Adobe XD · Miro</dd></div>
@@ -2022,6 +2047,7 @@ footer .section__label{color:var(--gold);}
     </button>
   </div>
   <div class="project-preview" data-target="body-nangloeng" style="cursor:pointer;">
+    <div class="scan-line"></div>
     <div class="project-preview__stat"><dt>Team</dt><dd>30 people · 5 depts</dd></div>
     <div class="project-preview__stat"><dt>Reach</dt><dd>230.6K (+848%)</dd></div>
     <div class="project-preview__stat"><dt>Media</dt><dd>18 of 63 outlets</dd></div>
@@ -2093,20 +2119,20 @@ footer .section__label{color:var(--gold);}
       <h4>Research &amp; Analysis</h4>
       <ul>
         <li>Research design &amp; methodology</li>
-        <li>Psychological research methods</li>
         <li>Qualitative &amp; quantitative research</li>
-        <li>UX research &amp; testing</li>
+        <li>Psychological &amp; behavioural research</li>
+        <li>UX research &amp; usability testing</li>
         <li>Ethnographic fieldwork</li>
         <li>Design thinking</li>
       </ul>
     </div>
     <div class="skills__group">
-      <h4>Business Development &amp; Strategy</h4>
+      <h4>Communication &amp; Strategy</h4>
       <ul>
-        <li>Business development &amp; B2B growth</li>
-        <li>Pitch decks &amp; presentations</li>
+        <li>Business development &amp; partnership growth</li>
         <li>Marketing strategy &amp; campaigns</li>
         <li>Branding &amp; social media</li>
+        <li>Pitch decks &amp; presentations</li>
         <li>Public speaking &amp; facilitation</li>
       </ul>
     </div>
@@ -2121,17 +2147,14 @@ footer .section__label{color:var(--gold);}
       </ul>
     </div>
     <div class="skills__group">
-      <h4>Tools &amp; Data</h4>
+      <h4>Data, Design &amp; Technology</h4>
       <ul>
-        <li>SPSS &amp; statistical analysis</li>
-        <li>SQL &amp; data tables</li>
-        <li>Tableau data visualisation</li>
-        <li>GitHub &amp; version control</li>
-        <li>HTML, CSS &amp; JavaScript</li>
-        <li>AI-assisted prototyping (Claude Code)</li>
-        <li>Adobe XD &amp; prototyping</li>
-        <li>Figma</li>
-        <li>Microsoft Excel &amp; PowerPoint</li>
+        <li>Statistical analysis (SPSS)</li>
+        <li>Data querying &amp; management (SQL)</li>
+        <li>Data visualisation (Tableau)</li>
+        <li>Front-end web development (HTML, CSS &amp; JavaScript)</li>
+        <li>UX/UI design &amp; prototyping (Figma, Adobe XD)</li>
+        <li>AI-assisted prototyping &amp; version control (Claude Code, GitHub)</li>
       </ul>
     </div>
   </div>
@@ -2415,7 +2438,21 @@ document.querySelectorAll('.toggle-btn').forEach(btn => {
 
 // Whole preview strip is also clickable
 document.querySelectorAll('.project-preview').forEach(strip => {
-  strip.addEventListener('click', () => toggleProject(strip.dataset.target));
+  strip.addEventListener('click', () => {
+    strip.classList.remove('touched');
+    requestAnimationFrame(() => {
+      strip.classList.add('touched');
+      setTimeout(() => strip.classList.remove('touched'), 600);
+    });
+    if (!reduceMotion) {
+      strip.classList.remove('scanning');
+      requestAnimationFrame(() => {
+        strip.classList.add('scanning');
+        setTimeout(() => strip.classList.remove('scanning'), 1000);
+      });
+    }
+    toggleProject(strip.dataset.target);
+  });
 });
 
 </script>
