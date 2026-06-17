@@ -1169,6 +1169,10 @@ footer .section__label{color:var(--gold);}
 .project-preview--peri .scan-line{background:linear-gradient(90deg, rgba(157,180,232,0), rgba(157,180,232,0.45), rgba(157,180,232,0));}
 .project-preview--mint .scan-line{background:linear-gradient(90deg, rgba(127,217,174,0), rgba(127,217,174,0.45), rgba(127,217,174,0));}
 .project-preview--coral .scan-line{background:linear-gradient(90deg, rgba(238,134,105,0), rgba(238,134,105,0.45), rgba(238,134,105,0));}
+.project-preview.spotlight{
+  transform:translateY(-4px);
+  box-shadow:0 0 0 1.5px var(--gold), 0 16px 32px rgba(232,182,94,0.18);
+}
 .project-preview__stat{flex:1; min-width:140px; position:relative; z-index:2;}
 .project-preview__stat dt{
   font-family:var(--mono);
@@ -1195,6 +1199,37 @@ footer .section__label{color:var(--gold);}
   z-index:2;
 }
 .project-preview__finding strong{color:var(--cream);}
+
+.project-preview__cue{
+  width:100%;
+  margin-top:6px;
+  font-family:var(--mono);
+  font-size:0.62rem;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  color:var(--text-soft);
+  display:flex;
+  align-items:center;
+  gap:6px;
+  position:relative;
+  z-index:2;
+  transition:color 0.2s;
+}
+.project-preview:hover .project-preview__cue, .project-preview.touched .project-preview__cue{color:var(--cream);}
+.project-preview__cue-icon{
+  display:inline-flex;
+  width:14px;height:14px;
+  align-items:center;justify-content:center;
+  border:1px solid var(--border-strong);
+  border-radius:50%;
+  font-size:0.6rem;
+  line-height:1;
+  flex-shrink:0;
+  transition:border-color 0.2s;
+}
+.project-preview--peri:hover .project-preview__cue-icon, .project-preview--peri.touched .project-preview__cue-icon{border-color:var(--peri);}
+.project-preview--mint:hover .project-preview__cue-icon, .project-preview--mint.touched .project-preview__cue-icon{border-color:var(--mint);}
+.project-preview--coral:hover .project-preview__cue-icon, .project-preview--coral.touched .project-preview__cue-icon{border-color:var(--coral);}
 
 .scan-line{
   position:absolute;top:0;bottom:0;left:-4%;width:4%;
@@ -1459,6 +1494,17 @@ footer .section__label{color:var(--gold);}
       <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> Picked up table-reading and pacing fast in a high-volume room — the same instinct for spotting friction that drives my UX research.</p></div>
     </article>
 
+    <article class="card card--peri" data-cat="research" data-loc="exeter" id="card-dissertation">
+      <div class="card__stamp">EXETER<br>2025</div>
+      <h3 class="card__role">MSc Dissertation: Decentering, Mindfulness &amp; Rumination</h3>
+      <div class="card__org">University of Exeter · Jan–Aug 2025</div>
+      <p class="card__desc">Surveyed 283 UK adults aged 18–30 and ran mediation analysis to test how mindfulness relates to rumination — and whether decentering explains that link.</p>
+      <div class="card__tags"><span>Research Design</span><span>Statistical Analysis</span><span>Psychology</span></div>
+      <div class="card__more"><span class="card__more-icon">+</span> Highlight</div>
+      <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> Decentering, not mindfulness itself, did the real work — a finding that reframed how I think about designing for behaviour change.</p></div>
+      <a class="card__link" href="#projects" data-open="body-research">Read the full study ↓</a>
+    </article>
+
     <article class="card card--gold" data-cat="business" data-loc="bangkok">
       <div class="card__stamp">THAILAND<br>2024</div>
       <h3 class="card__role">Business Development Specialist</h3>
@@ -1550,7 +1596,7 @@ footer .section__label{color:var(--gold);}
       <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> First role where research findings I gathered directly shaped what I then designed — the loop that's defined how I work since.</p></div>
     </article>
 
-    <article class="card card--peri" data-cat="community research" data-loc="bangkok">
+    <article class="card card--peri" data-cat="community research" data-loc="bangkok" id="card-limelight">
       <div class="card__stamp">BANGKOK<br>2021</div>
       <h3 class="card__role">LIMELIGHT: Public Safety Service Design</h3>
       <div class="card__org">School of Global Studies, Thammasat University · Feb–May 2021</div>
@@ -1621,12 +1667,13 @@ footer .section__label{color:var(--gold);}
       <span>Read the research</span> <span class="toggle-icon">+</span>
     </button>
   </div>
-  <div class="project-preview project-preview--peri" data-target="body-research" style="cursor:pointer;">
+  <div class="project-preview project-preview--peri" data-target="body-research" data-loc="exeter" style="cursor:pointer;">
     <div class="scan-line"></div>
     <div class="project-preview__stat"><dt>Sample</dt><dd>283 UK adults, 18–30</dd></div>
     <div class="project-preview__stat"><dt>Method</dt><dd>Mediation analysis</dd></div>
     <div class="project-preview__stat"><dt>Focus</dt><dd>Mindfulness · Decentering · Rumination</dd></div>
     <div class="project-preview__finding"><strong>Key finding:</strong> Decentering — not awareness alone — explains why mindfulness relates to lower rumination.</div>
+    <div class="project-preview__cue"><span class="project-preview__cue-icon">+</span> Tap to read the full study</div>
   </div>
   <div class="project-body" id="body-research">
   <div style="height:32px;"></div>
@@ -1709,12 +1756,13 @@ footer .section__label{color:var(--gold);}
       <span>Explore + try prototype</span> <span class="toggle-icon">+</span>
     </button>
   </div>
-  <div class="project-preview project-preview--mint" data-target="body-limelight" style="cursor:pointer;">
+  <div class="project-preview project-preview--mint" data-target="body-limelight" data-loc="bangkok" style="cursor:pointer;">
     <div class="scan-line"></div>
     <div class="project-preview__stat"><dt>Method</dt><dd>Mixed-methods UX research</dd></div>
     <div class="project-preview__stat"><dt>Usability</dt><dd>86% SUS · 7s alert</dd></div>
     <div class="project-preview__stat"><dt>Tools</dt><dd>Adobe XD · Miro</dd></div>
     <div class="project-preview__finding"><strong>Key finding:</strong> Tourists' fear came from perceived threat, not actual crime — reframing the brief from policing to companionship.</div>
+    <div class="project-preview__cue"><span class="project-preview__cue-icon">+</span> Tap to read the full case study</div>
   </div>
   <div class="project-body" id="body-limelight">
   <div style="height:32px;"></div>
@@ -2059,12 +2107,13 @@ footer .section__label{color:var(--gold);}
       <span>Read the full story</span> <span class="toggle-icon">+</span>
     </button>
   </div>
-  <div class="project-preview project-preview--coral" data-target="body-nangloeng" style="cursor:pointer;">
+  <div class="project-preview project-preview--coral" data-target="body-nangloeng" data-loc="bangkok" style="cursor:pointer;">
     <div class="scan-line"></div>
     <div class="project-preview__stat"><dt>Team</dt><dd>30 people · 5 depts</dd></div>
     <div class="project-preview__stat"><dt>Reach</dt><dd>230.6K (+848%)</dd></div>
     <div class="project-preview__stat"><dt>Media</dt><dd>18 of 63 outlets</dd></div>
     <div class="project-preview__finding"><strong>Key lesson:</strong> Authority doesn't make a leader — legitimacy built through relationships is what makes cross-functional collaboration work.</div>
+    <div class="project-preview__cue"><span class="project-preview__cue-icon">+</span> Tap to read the full story</div>
   </div>
   <div class="project-body" id="body-nangloeng">
   <div style="height:32px;"></div>
@@ -2320,14 +2369,27 @@ window.addEventListener('load', () => movePill(document.querySelector('.tab.acti
 window.addEventListener('resize', () => movePill(document.querySelector('.tab.active')));
 
 /* ---- Constellation: click a city to filter + spotlight ---- */
+const projectPreviews = document.querySelectorAll('.project-preview');
+const priorityScrollTargets = { bangkok: 'card-limelight', exeter: 'card-dissertation' };
 document.querySelectorAll('.node').forEach(node => {
   const city = node.dataset.city;
   const activate = () => {
-    document.getElementById('journey').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
     setActiveTab(document.querySelector('.tab[data-filter="all"]'));
     cards.forEach(c => c.classList.remove('hidden'));
     cards.forEach(c => c.classList.toggle('spotlight', c.dataset.loc === city));
-    setTimeout(() => cards.forEach(c => c.classList.remove('spotlight')), 2600);
+    projectPreviews.forEach(p => p.classList.toggle('spotlight', p.dataset.loc === city));
+    const priorityId = priorityScrollTargets[city];
+    const priorityTarget = priorityId ? document.getElementById(priorityId) : null;
+    const allMatches = [...cards, ...projectPreviews].filter(el => el.dataset.loc === city);
+    const nearestMatch = allMatches.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)[0];
+    const scrollTarget = priorityTarget || nearestMatch || document.getElementById('journey');
+    setTimeout(() => {
+      scrollTarget.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'center' });
+    }, reduceMotion ? 0 : 50);
+    setTimeout(() => {
+      cards.forEach(c => c.classList.remove('spotlight'));
+      projectPreviews.forEach(p => p.classList.remove('spotlight'));
+    }, 2600);
   };
   node.addEventListener('click', activate);
   node.addEventListener('keydown', e => {
