@@ -388,6 +388,55 @@ section{padding:80px 6vw;}
 }
 .card__link:hover{color:var(--mint); border-color:var(--mint);}
 
+.card{cursor:pointer;}
+.card__more{
+  margin-top:14px;
+  font-family:var(--mono);
+  font-size:0.66rem;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  color:var(--text-soft);
+  display:flex;
+  align-items:center;
+  gap:6px;
+  transition:color 0.2s;
+}
+.card:hover .card__more{color:var(--cream);}
+.card__more-icon{
+  display:inline-flex;
+  width:14px;height:14px;
+  align-items:center;justify-content:center;
+  border:1px solid var(--border-strong);
+  border-radius:50%;
+  font-size:0.6rem;
+  line-height:1;
+  transition:transform 0.25s ease, border-color 0.2s;
+  flex-shrink:0;
+}
+.card.expanded .card__more-icon{transform:rotate(45deg);}
+.card--peri:hover .card__more-icon{border-color:var(--peri);}
+.card--coral:hover .card__more-icon{border-color:var(--coral);}
+.card--gold:hover .card__more-icon{border-color:var(--gold);}
+.card--mint:hover .card__more-icon{border-color:var(--mint);}
+.card__highlight-wrap{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.3s ease;
+}
+.card.expanded .card__highlight-wrap{max-height:200px;}
+.card__highlight{
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid var(--border);
+  font-size:0.85rem;
+  line-height:1.5;
+}
+.card__highlight strong{color:var(--cream);}
+.card--peri .card__highlight strong{color:var(--peri);}
+.card--coral .card__highlight strong{color:var(--coral);}
+.card--gold .card__highlight strong{color:var(--gold);}
+.card--mint .card__highlight strong{color:var(--mint);}
+
 .diss-links{display:flex; flex-direction:column; gap:8px; margin-top:16px;}
 .diss-links .card__link{margin-top:0;}
 
@@ -1370,6 +1419,8 @@ footer .section__label{color:var(--gold);}
       <div class="card__org">Pho Restaurant · Exeter, UK · Nov 2025–Present</div>
       <p class="card__desc">Delivering attentive, efficient service in a fast-paced restaurant — handling guest requests calmly and building a sharp eye for service flow and experience quality in a high-volume setting.</p>
       <div class="card__tags"><span>Customer Service</span><span>Communication</span></div>
+      <div class="card__more"><span class="card__more-icon">+</span> Highlight</div>
+      <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> Picked up table-reading and pacing fast in a high-volume room — the same instinct for spotting friction that drives my UX research.</p></div>
     </article>
 
     <article class="card card--gold" data-cat="business" data-loc="bangkok">
@@ -1378,6 +1429,8 @@ footer .section__label{color:var(--gold);}
       <div class="card__org">TGB · Thailand · Apr–Jun 2024</div>
       <p class="card__desc">Built B2B growth strategies and pitch decks for stakeholders and partners, ran online marketplace campaigns, and managed the company's social media presence to boost brand awareness.</p>
       <div class="card__tags"><span>Business Development</span><span>B2B Strategy</span><span>Marketing</span><span>Pitching</span></div>
+      <div class="card__more"><span class="card__more-icon">+</span> Highlight</div>
+      <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> Pitch decks I built were used directly in stakeholder meetings — my first taste of B2B strategy translating straight into real conversations.</p></div>
     </article>
 
     <article class="card card--mint" data-cat="community" data-loc="bangkok">
@@ -1386,6 +1439,8 @@ footer .section__label{color:var(--gold);}
       <div class="card__org">ADB Greater Mekong CCESP · Bangkok, TH · Jul 2023</div>
       <p class="card__desc">Coordinated registration and attendee flow for a regional climate policy dialogue, and captured detailed notes on climate resilience, disaster risk and sustainability discussions.</p>
       <div class="card__tags"><span>Event Coordination</span><span>Note-taking</span><span>Climate Policy</span></div>
+      <div class="card__more"><span class="card__more-icon">+</span> Highlight</div>
+      <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> First time hearing climate resilience policy debated by practitioners in the room rather than read about in a textbook.</p></div>
     </article>
 
     <article class="card card--coral" data-cat="community" data-loc="bangkok">
@@ -1394,6 +1449,8 @@ footer .section__label{color:var(--gold);}
       <div class="card__org">Project Manager / Product Owner · Oct 2022–Apr 2023</div>
       <p class="card__desc">Led a 30-person team across five departments to deliver a 7-day, 11-programme exhibition — launching four new revenue activities (~29,250 THB reinvested), growing reach to 230.6K (+848%), and securing coverage from 18 of 63 media outlets contacted.</p>
       <div class="card__tags"><span>Project Management</span><span>Team Leadership</span><span>Community Engagement</span></div>
+      <div class="card__more"><span class="card__more-icon">+</span> Highlight</div>
+      <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> Reach grew <strong>+848%</strong> against a 7-month timeline I'd never managed at this scale before — the project that proved I could lead, not just contribute.</p></div>
       <a class="card__link" href="#projects" data-open="body-nangloeng">Read the full project story ↓</a>
     </article>
 
@@ -1403,6 +1460,8 @@ footer .section__label{color:var(--gold);}
       <div class="card__org">Bangkok Design Week · Bangkok, TH · Jan–Feb 2023</div>
       <p class="card__desc">Supported international artists staging "Why is the River Laughing?" at the historic So Heng Tai mansion in Talat Noi — researching funding routes and helping with installation, staffing and community outreach.</p>
       <div class="card__tags"><span>Fundraising</span><span>Arts Production</span><span>Community Engagement</span></div>
+      <div class="card__more"><span class="card__more-icon">+</span> Highlight</div>
+      <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> Helped stage an exhibition inside a 230-year-old mansion — learning how heritage spaces shape what an installation can and can't do.</p></div>
     </article>
 
     <article class="card card--gold" data-cat="research" data-loc="bangkok">
@@ -1411,6 +1470,8 @@ footer .section__label{color:var(--gold);}
       <div class="card__org">School of Global Studies, Thammasat University · May 2022</div>
       <p class="card__desc">Chaired a public discussion on the Metaverse and its impact on social enterprise, with guest speakers from Fort and Vendii (creators of the Tao Bin vending machine).</p>
       <div class="card__tags"><span>Public Speaking</span><span>Facilitation</span></div>
+      <div class="card__more"><span class="card__more-icon">+</span> Highlight</div>
+      <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> Moderating live with founders forced me to think on my feet about a topic — the Metaverse — that barely had settled answers yet.</p></div>
     </article>
 
     <article class="card card--peri" data-cat="research" data-loc="osaka">
@@ -1419,6 +1480,8 @@ footer .section__label{color:var(--gold);}
       <div class="card__org">Osaka University · Remote · Nov 2021–Jan 2022</div>
       <p class="card__desc">Worked alongside Japanese students on place-branding research, linking the Sustainable Development Goals to local businesses and communities in Japan and Thailand.</p>
       <div class="card__tags"><span>Research</span><span>Branding</span><span>SDGs</span></div>
+      <div class="card__more"><span class="card__more-icon">+</span> Highlight</div>
+      <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> Ran entirely remote across two countries — early practice for the cross-cultural collaboration my work keeps coming back to.</p></div>
     </article>
 
     <article class="card card--mint" data-cat="research advocacy" data-loc="delft">
@@ -1427,6 +1490,8 @@ footer .section__label{color:var(--gold);}
       <div class="card__org">TU Delft — Industrial Design Engineering · Oct 2021</div>
       <p class="card__desc">Took part in a four-part international online workshop on spatial justice, debating with students across partner universities and co-writing a manifesto for a fairer, "life-giving" rather than profit-making city.</p>
       <div class="card__tags"><span>Human Rights</span><span>Urban Planning</span><span>Academic Writing</span></div>
+      <div class="card__more"><span class="card__more-icon">+</span> Highlight</div>
+      <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> Co-writing a manifesto with strangers across borders showed me how differently "fairness" gets defined depending on who's drafting it.</p></div>
     </article>
 
     <article class="card card--coral" data-cat="research advocacy">
@@ -1435,6 +1500,8 @@ footer .section__label{color:var(--gold);}
       <div class="card__org">Hackathon.com · Sep–Oct 2021</div>
       <p class="card__desc">Designed a human-centred website offering mental health support for the carers of people experiencing mental health issues during COVID-19 lockdowns — built with scalability and long-term sustainability in mind.</p>
       <div class="card__tags"><span>Human-Centred Design</span><span>Mental Health Advocacy</span><span>Teamwork</span></div>
+      <div class="card__more"><span class="card__more-icon">+</span> Highlight</div>
+      <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> Designed for a group almost no one was building for — carers, not patients — and realised how often that gap gets overlooked.</p></div>
     </article>
 
     <article class="card card--gold" data-cat="business" data-loc="bangkok">
@@ -1443,6 +1510,8 @@ footer .section__label{color:var(--gold);}
       <div class="card__org">Edsy.co · Bangkok, TH · Jun–Jul 2021</div>
       <p class="card__desc">Ran user interviews and UX research, designed UI for a new app and its blog and pages, built dynamic prototypes, and helped analyse quarterly marketing performance against CTR, conversion and CAC.</p>
       <div class="card__tags"><span>UX Research</span><span>UI Design</span><span>Adobe XD</span></div>
+      <div class="card__more"><span class="card__more-icon">+</span> Highlight</div>
+      <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> First role where research findings I gathered directly shaped what I then designed — the loop that's defined how I work since.</p></div>
     </article>
 
     <article class="card card--peri" data-cat="community research" data-loc="bangkok">
@@ -1451,6 +1520,8 @@ footer .section__label{color:var(--gold);}
       <div class="card__org">School of Global Studies, Thammasat University · Feb–May 2021</div>
       <p class="card__desc">Used design-thinking and mixed-methods UX research — interviews, observation and police crime data — to design and usability-test a safety service for tourists in Bangkok's Soi Nana.</p>
       <div class="card__tags"><span>Design Thinking</span><span>UX Research</span><span>Usability Testing</span></div>
+      <div class="card__more"><span class="card__more-icon">+</span> Highlight</div>
+      <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> The data showed low actual crime, but every tourist still felt unsafe — the gap between perception and reality became the whole design brief.</p></div>
       <a class="card__link" href="#projects" data-open="body-limelight">Read the full case study ↓</a>
     </article>
 
@@ -1460,6 +1531,8 @@ footer .section__label{color:var(--gold);}
       <div class="card__org">International Telecommunication Union · Apr 2021</div>
       <p class="card__desc">Took part in a global day spotlighting opportunities for girls and young women in technology and ICT careers.</p>
       <div class="card__tags"><span>Gender Equity</span><span>Human Rights</span><span>Sustainable Development</span></div>
+      <div class="card__more"><span class="card__more-icon">+</span> Highlight</div>
+      <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> Joined alongside participants from dozens of countries — a reminder of how unevenly access to tech careers is still distributed.</p></div>
     </article>
 
     <article class="card card--gold" data-cat="research advocacy" data-loc="seoul">
@@ -1468,6 +1541,8 @@ footer .section__label{color:var(--gold);}
       <div class="card__org">Yonsei University · Feb 2021</div>
       <p class="card__desc">Joined a forum on "Peace, Prosperity and Partnership," exploring global cooperation, human rights and multilateralism for sustainable development.</p>
       <div class="card__tags"><span>Human Rights</span><span>Teamwork</span><span>Sustainable Development</span></div>
+      <div class="card__more"><span class="card__more-icon">+</span> Highlight</div>
+      <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> Debating multilateralism with students from across Asia sharpened how I argue for ideas I actually believe in, not just ones that sound good.</p></div>
     </article>
 
     <article class="card card--coral" data-cat="research" data-loc="lampang">
@@ -1476,6 +1551,8 @@ footer .section__label{color:var(--gold);}
       <div class="card__org">School of Global Studies, Thammasat University · Jan–Mar 2020</div>
       <p class="card__desc">Conducted overt-observation, community-based fieldwork in Ban Mon Khao Kaew village, Lampang — identifying the practices, resources and institutions that sustain a diverse local economy.</p>
       <div class="card__tags"><span>Qualitative Research</span><span>Fieldwork</span></div>
+      <div class="card__more"><span class="card__more-icon">+</span> Highlight</div>
+      <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> Living in the village while researching it, not just visiting, changed what counted as "data" — relationships mattered as much as interviews.</p></div>
     </article>
 
     <article class="card card--peri" data-cat="community advocacy" data-loc="bangkok">
@@ -1484,6 +1561,8 @@ footer .section__label{color:var(--gold);}
       <div class="card__org">Run2GetherxThammasat · Nov 2019–Jan 2020</div>
       <p class="card__desc">Led planning for an inclusive community running event with the Together Foundation, coordinating guide-runners, volunteers and 300+ attendees to challenge disability stigma through shared activity — featured on Thai PBS national television.</p>
       <div class="card__tags"><span>Disability Inclusion</span><span>Human Rights</span><span>Event Coordination</span><span>Media Coverage</span></div>
+      <div class="card__more"><span class="card__more-icon">+</span> Highlight</div>
+      <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> Watching guide-runners and 300+ strangers move as one group, then seeing it covered on national TV — the first time I saw advocacy work travel beyond the room it happened in.</p></div>
     </article>
 
   </div>
@@ -2141,6 +2220,14 @@ document.querySelectorAll('[data-open]').forEach(link => {
         setTimeout(() => body.previousElementSibling?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'nearest' }), 400);
       }
     }, 350);
+  });
+});
+
+/* Experience cards: click to expand a short highlight */
+document.querySelectorAll('#cardGrid .card').forEach(card => {
+  card.addEventListener('click', e => {
+    if (e.target.closest('a')) return;
+    card.classList.toggle('expanded');
   });
 });
 
