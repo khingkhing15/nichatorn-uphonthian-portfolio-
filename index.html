@@ -1027,19 +1027,80 @@ section{padding:80px 6vw;}
   gap:10px;
 }
 
-/* ===== SKILLS ===== */
-.skills__groups{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:32px;}
-.skills__group h4{
-  font-family:var(--mono);
-  font-size:0.72rem;
-  text-transform:uppercase;
-  letter-spacing:0.12em;
-  color:var(--gold);
-  margin-bottom:14px;
+/* ===== SKILLS — THE LINE ===== */
+.ticket-note{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--text-soft);border:1px dashed var(--border-strong);border-radius:999px;
+  padding:8px 16px;margin-bottom:32px;
 }
-.skills__group ul{list-style:none;}
-.skills__group li{font-family:var(--serif); font-size:1.04rem; padding:7px 0; border-bottom:1px dashed var(--border);}
-.skills__group li:last-child{border-bottom:none;}
+.ticket-note__dot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;}
+
+.line-card{
+  background:var(--bg-raised);border:1px solid var(--border);border-radius:12px;
+  padding:32px 28px 24px;
+}
+.line-card__header{
+  display:flex;justify-content:space-between;align-items:baseline;
+  margin-bottom:40px;flex-wrap:wrap;gap:8px;
+}
+.line-card__name{font-family:var(--serif);font-size:1.1rem;color:var(--cream);}
+.line-card__meta{font-family:var(--mono);font-size:0.62rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-soft);}
+
+.line-track-wrap{position:relative;height:3px;margin:0 6px 0 14px;border-radius:2px;}
+.line-track{
+  position:absolute;width:100%;height:100%;
+  background-image:linear-gradient(to right, var(--border-strong) 0, var(--border-strong) 5px, transparent 5px, transparent 11px);
+  background-size:11px 100%;
+}
+.line-fill{
+  position:absolute;top:0;left:0;height:100%;width:0%;background:var(--gold);border-radius:2px;
+  transition:width 0.6s ease;
+}
+.line-train{
+  position:absolute;top:-9px;left:0%;font-size:0.95rem;transform:translateX(-50%);
+  transition:left 0.6s ease;z-index:3;
+}
+
+.line-stations{display:flex;justify-content:space-between;position:relative;margin-top:-8px;}
+.line-station{
+  flex:1;display:flex;flex-direction:column;align-items:center;cursor:pointer;
+  position:relative;transition:transform 0.2s;
+}
+.line-station:hover{transform:translateY(-2px);}
+.line-station__dot{
+  width:18px;height:18px;border-radius:50%;background:var(--bg-raised);border:3px solid var(--border-strong);
+  display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.5rem;
+  color:var(--text-soft);transition:all 0.25s;z-index:2;
+}
+.line-station.active .line-station__dot{color:var(--bg);font-weight:600;}
+.line-station__name{
+  font-family:var(--mono);font-size:0.6rem;letter-spacing:0.04em;text-transform:uppercase;
+  margin-top:13px;text-align:center;max-width:90px;
+}
+.line-station__count{font-size:0.56rem;color:var(--text-soft);margin-top:3px;font-family:var(--mono);}
+
+.line-board{
+  background:var(--bg);border:1px solid var(--border);border-radius:8px;
+  padding:18px 20px;margin-top:34px;display:none;
+}
+.line-board.show{display:block;}
+.line-board__route{
+  font-family:var(--mono);font-size:0.62rem;letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--text-soft);margin-bottom:12px;
+}
+.line-board__now{color:var(--gold);}
+.line-board__list{display:flex;flex-wrap:wrap;gap:8px;}
+.line-board__chip{
+  font-size:0.85rem;border:1px solid var(--border-strong);border-radius:6px;padding:7px 12px;
+  font-family:var(--sans);color:var(--cream);
+}
+
+@media (max-width:600px){
+  .line-card{padding:26px 18px 20px;}
+  .line-station__name{font-size:0.54rem;max-width:60px;}
+  .line-station__count{display:none;}
+}
 
 /* ===== CONTACT / FOOTER ===== */
 footer{
@@ -2165,59 +2226,52 @@ footer .section__label{color:var(--gold);}
 
 <section class="reveal">
   <div class="section__label">Skills</div>
-  <h2 class="section__title">What I bring to a team</h2>
-  <p style="font-size:1rem; color:var(--text-soft); max-width:62ch; margin-top:-8px; margin-bottom:32px;">Six years moving between <strong style="color:var(--cream);">psychology, UX design, business development and community work</strong> have given me both deep expertise and genuinely transferable skills — strong project management and strong research skills that travel across every context I work in.</p>
-  <div class="skills__groups">
-    <div class="skills__group">
-      <h4>Advocacy &amp; Inclusion</h4>
-      <ul>
-        <li>Mental health literacy &amp; advocacy</li>
-        <li>Human rights-informed practice</li>
-        <li>Disability inclusion &amp; accessibility</li>
-        <li>Community engagement &amp; participation</li>
-      </ul>
+  <h2 class="section__title">One line, five stations</h2>
+  <p style="font-size:1rem; color:var(--text-soft); max-width:62ch; margin-top:-8px; margin-bottom:32px;">Six years moving between <strong style="color:var(--cream);">psychology, UX design, business development and community work</strong> have given me both deep expertise and genuinely transferable skills, the kind that travel across every context I work in. Here's the route they've taken, departing from everything I bring to a team.</p>
+
+  <div class="ticket-note"><span class="ticket-note__dot"></span> Tap a platform to see what's onboard</div>
+
+  <div class="line-card">
+    <div class="line-card__header">
+      <div class="line-card__name">The Skills Line</div>
+      <div class="line-card__meta">5 stations · departing now</div>
     </div>
-    <div class="skills__group">
-      <h4>Research &amp; Analysis</h4>
-      <ul>
-        <li>Research design &amp; methodology</li>
-        <li>Qualitative &amp; quantitative research</li>
-        <li>Psychological &amp; behavioural research</li>
-        <li>UX research &amp; usability testing</li>
-        <li>Ethnographic fieldwork</li>
-        <li>Design thinking</li>
-      </ul>
+    <div class="line-track-wrap">
+      <div class="line-track"></div>
+      <div class="line-fill" id="skillsLineFill"></div>
+      <div class="line-train" id="skillsLineTrain">🚆</div>
     </div>
-    <div class="skills__group">
-      <h4>Communication &amp; Strategy</h4>
-      <ul>
-        <li>Business development &amp; partnership growth</li>
-        <li>Marketing strategy &amp; campaigns</li>
-        <li>Branding &amp; social media</li>
-        <li>Pitch decks &amp; presentations</li>
-        <li>Public speaking &amp; facilitation</li>
-      </ul>
+    <div class="line-stations" id="skillsLineStations">
+      <div class="line-station" data-i="0" onclick="goSkillsStation(0)">
+        <div class="line-station__dot">01</div>
+        <div class="line-station__name" style="color:var(--coral);">Advocacy</div>
+        <div class="line-station__count">4 skills</div>
+      </div>
+      <div class="line-station" data-i="1" onclick="goSkillsStation(1)">
+        <div class="line-station__dot">02</div>
+        <div class="line-station__name" style="color:var(--peri);">Research</div>
+        <div class="line-station__count">6 skills</div>
+      </div>
+      <div class="line-station" data-i="2" onclick="goSkillsStation(2)">
+        <div class="line-station__dot">03</div>
+        <div class="line-station__name" style="color:var(--gold);">Strategy</div>
+        <div class="line-station__count">5 skills</div>
+      </div>
+      <div class="line-station" data-i="3" onclick="goSkillsStation(3)">
+        <div class="line-station__dot">04</div>
+        <div class="line-station__name" style="color:var(--mint);">People Mgmt</div>
+        <div class="line-station__count">5 skills</div>
+      </div>
+      <div class="line-station" data-i="4" onclick="goSkillsStation(4)">
+        <div class="line-station__dot">05</div>
+        <div class="line-station__name" style="color:var(--cream);">Data &amp; Tech</div>
+        <div class="line-station__count">6 skills</div>
+      </div>
     </div>
-    <div class="skills__group">
-      <h4>Project &amp; People Management</h4>
-      <ul>
-        <li>Project management &amp; delivery</li>
-        <li>Cross-cultural collaboration</li>
-        <li>Stakeholder engagement &amp; partnership building</li>
-        <li>Team leadership</li>
-        <li>Event coordination</li>
-      </ul>
-    </div>
-    <div class="skills__group">
-      <h4>Data, Design &amp; Technology</h4>
-      <ul>
-        <li>Statistical analysis (SPSS)</li>
-        <li>Data querying &amp; management (SQL)</li>
-        <li>Data visualisation (Tableau)</li>
-        <li>Front-end web development (HTML, CSS &amp; JavaScript)</li>
-        <li>UX/UI design &amp; prototyping (Figma, Adobe XD)</li>
-        <li>AI-assisted prototyping &amp; version control (Claude Code, GitHub)</li>
-      </ul>
+
+    <div class="line-board" id="skillsLineBoard">
+      <div class="line-board__route"><span class="line-board__now">Now arriving</span> <span id="skillsBoardStation"></span></div>
+      <div class="line-board__list" id="skillsBoardList"></div>
     </div>
   </div>
 </section>
@@ -2529,6 +2583,37 @@ document.querySelectorAll('.project-preview').forEach(strip => {
     toggleProject(strip.dataset.target);
   });
 });
+
+/* ---- Skills: the line ---- */
+const skillsLineData = [
+  { name: 'Platform 01 · Advocacy &amp; Inclusion', skills: ['Mental health literacy &amp; advocacy','Human rights-informed practice','Disability inclusion &amp; accessibility','Community engagement &amp; participation'] },
+  { name: 'Platform 02 · Research &amp; Analysis', skills: ['Research design &amp; methodology','Qualitative &amp; quantitative research','Psychological &amp; behavioural research','UX research &amp; usability testing','Ethnographic fieldwork','Design thinking'] },
+  { name: 'Platform 03 · Communication &amp; Strategy', skills: ['Business development &amp; partnership growth','Marketing strategy &amp; campaigns','Branding &amp; social media','Pitch decks &amp; presentations','Public speaking &amp; facilitation'] },
+  { name: 'Platform 04 · Project &amp; People Management', skills: ['Project management &amp; delivery','Cross-cultural collaboration','Stakeholder engagement &amp; partnership building','Team leadership','Event coordination'] },
+  { name: 'Platform 05 · Data, Design &amp; Technology', skills: ['Statistical analysis (SPSS)','Data querying &amp; management (SQL)','Data visualisation (Tableau)','Front-end web development (HTML, CSS &amp; JavaScript)','UX/UI design &amp; prototyping (Figma, Adobe XD)','AI-assisted prototyping &amp; version control (Claude Code, GitHub)'] }
+];
+const skillsStationPositions = [10, 32.5, 55, 77.5, 100];
+
+function goSkillsStation(i) {
+  const stations = document.querySelectorAll('#skillsLineStations .line-station');
+  stations.forEach((s, idx) => {
+    const dot = s.querySelector('.line-station__dot');
+    const isActive = idx <= i;
+    s.classList.toggle('active', isActive);
+    const color = s.querySelector('.line-station__name').style.color;
+    dot.style.borderColor = isActive ? color : '';
+    dot.style.background = isActive ? color : '';
+  });
+
+  const pct = skillsStationPositions[i];
+  document.getElementById('skillsLineFill').style.width = pct + '%';
+  document.getElementById('skillsLineTrain').style.left = pct + '%';
+
+  const data = skillsLineData[i];
+  document.getElementById('skillsBoardStation').innerHTML = data.name;
+  document.getElementById('skillsBoardList').innerHTML = data.skills.map(s => '<span class="line-board__chip">' + s + '</span>').join('');
+  document.getElementById('skillsLineBoard').classList.add('show');
+}
 
 </script>
 
