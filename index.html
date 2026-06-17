@@ -1153,9 +1153,22 @@ footer .section__label{color:var(--gold);}
 .project-preview:hover, .project-preview.touched{
   transform:translateY(-4px);
   background:var(--bg-raised-2);
+}
+.project-preview--peri:hover, .project-preview--peri.touched{
+  border-color:var(--peri);
+  box-shadow:0 16px 32px rgba(157,180,232,0.16);
+}
+.project-preview--mint:hover, .project-preview--mint.touched{
   border-color:var(--mint);
   box-shadow:0 16px 32px rgba(127,217,174,0.16);
 }
+.project-preview--coral:hover, .project-preview--coral.touched{
+  border-color:var(--coral);
+  box-shadow:0 16px 32px rgba(238,134,105,0.16);
+}
+.project-preview--peri .scan-line{background:linear-gradient(90deg, rgba(157,180,232,0), rgba(157,180,232,0.45), rgba(157,180,232,0));}
+.project-preview--mint .scan-line{background:linear-gradient(90deg, rgba(127,217,174,0), rgba(127,217,174,0.45), rgba(127,217,174,0));}
+.project-preview--coral .scan-line{background:linear-gradient(90deg, rgba(238,134,105,0), rgba(238,134,105,0.45), rgba(238,134,105,0));}
 .project-preview__stat{flex:1; min-width:140px; position:relative; z-index:2;}
 .project-preview__stat dt{
   font-family:var(--mono);
@@ -1608,7 +1621,7 @@ footer .section__label{color:var(--gold);}
       <span>Read the research</span> <span class="toggle-icon">+</span>
     </button>
   </div>
-  <div class="project-preview" data-target="body-research" style="cursor:pointer;">
+  <div class="project-preview project-preview--peri" data-target="body-research" style="cursor:pointer;">
     <div class="scan-line"></div>
     <div class="project-preview__stat"><dt>Sample</dt><dd>283 UK adults, 18–30</dd></div>
     <div class="project-preview__stat"><dt>Method</dt><dd>Mediation analysis</dd></div>
@@ -1696,7 +1709,7 @@ footer .section__label{color:var(--gold);}
       <span>Explore + try prototype</span> <span class="toggle-icon">+</span>
     </button>
   </div>
-  <div class="project-preview" data-target="body-limelight" style="cursor:pointer;">
+  <div class="project-preview project-preview--mint" data-target="body-limelight" style="cursor:pointer;">
     <div class="scan-line"></div>
     <div class="project-preview__stat"><dt>Method</dt><dd>Mixed-methods UX research</dd></div>
     <div class="project-preview__stat"><dt>Usability</dt><dd>86% SUS · 7s alert</dd></div>
@@ -2046,7 +2059,7 @@ footer .section__label{color:var(--gold);}
       <span>Read the full story</span> <span class="toggle-icon">+</span>
     </button>
   </div>
-  <div class="project-preview" data-target="body-nangloeng" style="cursor:pointer;">
+  <div class="project-preview project-preview--coral" data-target="body-nangloeng" style="cursor:pointer;">
     <div class="scan-line"></div>
     <div class="project-preview__stat"><dt>Team</dt><dd>30 people · 5 depts</dd></div>
     <div class="project-preview__stat"><dt>Reach</dt><dd>230.6K (+848%)</dd></div>
