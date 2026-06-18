@@ -151,6 +151,7 @@ nav{
   text-align:center;
 }
 .link{stroke:var(--border-strong); stroke-width:1.5; stroke-dasharray:4 6; fill:none;}
+.link--sub{stroke-width:1; opacity:0.7;}
 .node{cursor:pointer;}
 .node__halo{opacity:0.18; transform-origin:center; transform-box:fill-box; animation:pulse 3.4s ease-in-out infinite;}
 .node--bangkok .node__halo, .node--bangkok .node__dot{fill:var(--coral);}
@@ -190,6 +191,8 @@ nav{
 .node--osaka .node__label{fill:var(--peri);}
 .node--delft .node__label{fill:var(--mint);}
 .node--seoul .node__label{fill:var(--peri);}
+.node__label--sub{font-size:8px; stroke-width:2.5px;}
+.node__halo--sub{animation-delay:0.4s;}
 @keyframes pulse{
   0%,100%{transform:scale(1);}
   50%{transform:scale(1.35);}
@@ -1343,6 +1346,7 @@ footer .section__label{color:var(--gold);}
       <line class="link" x1="160" y1="300" x2="540" y2="320"/>
       <line class="link" x1="160" y1="300" x2="360" y2="400"/>
       <line class="link" x1="160" y1="300" x2="300" y2="70"/>
+      <line class="link link--sub" x1="430" y1="100" x2="478" y2="36"/>
 
       <!-- Exeter hub -->
       <g class="node node--exeter" data-city="exeter" tabindex="0" role="button" aria-label="Exeter — current base. Activate to view related work">
@@ -1363,6 +1367,19 @@ footer .section__label{color:var(--gold);}
           <rect class="node__tip-bg" x="450" y="64" width="150" height="44" rx="6"/>
           <text class="node__tip-text" x="462" y="84">Bangkok, TH</text>
           <text class="node__tip-meta" x="462" y="99">2020–24 · 8 entries</text>
+        </g>
+      </g>
+
+      <!-- Nang Lerng (sub-node off Bangkok) -->
+      <g class="node node--sub node--bangkok" data-city="bangkok" data-project="nangloeng" tabindex="0" role="button" aria-label="Nang Lerng, Bangkok — activate to view the Nang Lerng exhibition project">
+        <title>Nang Lerng, Bangkok · Oct 2022–Apr 2023</title>
+        <circle class="node__halo node__halo--sub" cx="478" cy="36" r="10"/>
+        <circle class="node__dot node__dot--sub" cx="478" cy="36" r="5"/>
+        <text class="node__label node__label--sub" x="478" y="22">Nang Lerng</text>
+        <g class="node__tip">
+          <rect class="node__tip-bg" x="496" y="14" width="150" height="44" rx="6"/>
+          <text class="node__tip-text" x="508" y="34">Nang Lerng, BKK</text>
+          <text class="node__tip-meta" x="508" y="49">2022–23 · Exhibition</text>
         </g>
       </g>
 
@@ -1509,9 +1526,9 @@ footer .section__label{color:var(--gold);}
       <span class="offer-card__cta">MSc dissertation →</span>
     </a>
     <a class="offer-card" href="#projects" data-jump data-open="body-nangloeng">
-      <div class="offer-card__tag">03 · Project &amp; Team Leadership</div>
+      <div class="offer-card__tag">03 · Project Manager &amp; Team Leadership</div>
       <h3>Delivery, end to end</h3>
-      <p>Leading a 30-person team from concept to a 7-day exhibition — then handing it over so it lasts.</p>
+      <p>Project-managed a 30-person team from concept to a 7-day exhibition — then handed it over so it lasts.</p>
       <span class="offer-card__cta">Nang Loeng project →</span>
     </a>
     <a class="offer-card" href="#journey" data-jump data-filter="business">
@@ -1586,7 +1603,7 @@ footer .section__label{color:var(--gold);}
       <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> First time hearing climate resilience policy debated by practitioners in the room rather than read about in a textbook.</p></div>
     </article>
 
-    <article class="card card--coral" data-cat="community" data-loc="bangkok">
+    <article class="card card--coral" data-cat="community" data-loc="bangkok" id="card-nangloeng">
       <div class="card__stamp">BANGKOK<br>2022–23</div>
       <h3 class="card__role">Nang Lerng Immersive Exhibition</h3>
       <div class="card__org">Project Manager / Product Owner · Oct 2022–Apr 2023</div>
@@ -2425,14 +2442,17 @@ window.addEventListener('resize', () => movePill(document.querySelector('.tab.ac
 /* ---- Constellation: click a city to filter + spotlight ---- */
 const projectPreviews = document.querySelectorAll('.project-preview');
 const priorityScrollTargets = { bangkok: 'card-limelight', exeter: 'card-dissertation' };
+const projectScrollTargets = { nangloeng: 'card-nangloeng' };
 document.querySelectorAll('.node').forEach(node => {
   const city = node.dataset.city;
+  const project = node.dataset.project;
   const activate = () => {
     setActiveTab(document.querySelector('.tab[data-filter="all"]'));
     cards.forEach(c => c.classList.remove('hidden'));
     cards.forEach(c => c.classList.toggle('spotlight', c.dataset.loc === city));
     projectPreviews.forEach(p => p.classList.toggle('spotlight', p.dataset.loc === city));
-    const priorityId = priorityScrollTargets[city];
+    const projectId = project ? projectScrollTargets[project] : null;
+    const priorityId = projectId || priorityScrollTargets[city];
     const priorityTarget = priorityId ? document.getElementById(priorityId) : null;
     const allMatches = [...cards, ...projectPreviews].filter(el => el.dataset.loc === city);
     const nearestMatch = allMatches.sort((a, b) => a.getBoundingClientRect().top - b.getBoundingClientRect().top)[0];
