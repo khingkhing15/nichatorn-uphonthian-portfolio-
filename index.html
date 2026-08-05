@@ -1548,7 +1548,7 @@ footer .section__label{color:var(--gold);}
 
 <section id="journey">
   <div class="section__label">Experience</div>
-  <h2 class="section__title">Fifteen postings, five threads</h2>
+  <h2 class="section__title">Sixteen postings, five threads</h2>
 
   <div class="tabs" role="tablist" aria-label="Filter experience by category" id="tabs">
     <span class="tabs__pill" id="tabsPill"></span>
@@ -1561,6 +1561,16 @@ footer .section__label{color:var(--gold);}
   </div>
 
   <div class="grid" id="cardGrid">
+
+    <article class="card card--gold" data-cat="research" data-loc="exeter" id="card-swbcc">
+      <div class="card__stamp">EXETER<br>2026</div>
+      <h3 class="card__role">UX/UI Consultant</h3>
+      <div class="card__org">South West Business Crime Centre · Exeter, UK · Jun 2026</div>
+      <p class="card__desc">Independently audited Kaleidoscope, a shared profile tracking system used across a business crime reduction partnership — reviewing interaction design, information architecture and data-handling practices, then delivered a written report of findings directly to the founder.</p>
+      <div class="card__tags"><span>UX Audit</span><span>Data Integrity</span><span>Usability Review</span></div>
+      <div class="card__more"><span class="card__more-icon">+</span> Highlight</div>
+      <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> Caught a data retention gap where incarcerated individuals' profiles were being deleted rather than archived — a small UX fix protecting real casework history for future use.</p></div>
+    </article>
 
     <article class="card card--peri" data-cat="hospitality" data-loc="exeter">
       <div class="card__stamp">EXETER<br>2025–</div>
@@ -2451,7 +2461,7 @@ window.addEventListener('resize', () => movePill(document.querySelector('.tab.ac
 
 /* ---- Constellation: click a city to filter + spotlight ---- */
 const projectPreviews = document.querySelectorAll('.project-preview');
-const priorityScrollTargets = { bangkok: 'card-limelight', exeter: 'card-dissertation' };
+const priorityScrollTargets = { bangkok: 'card-limelight', exeter: 'card-swbcc' };
 const projectScrollTargets = { nangloeng: 'card-nangloeng' };
 document.querySelectorAll('.node').forEach(node => {
   const city = node.dataset.city;
