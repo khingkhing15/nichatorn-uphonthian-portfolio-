@@ -237,6 +237,7 @@ section{padding:80px 6vw;}
 .lens-tag--psych{color:var(--peri); border-color:rgba(157,180,232,0.4);}
 .lens-tag--design{color:var(--mint); border-color:rgba(127,217,174,0.4);}
 .lens-tag--delivery{color:var(--coral); border-color:rgba(238,134,105,0.4);}
+.lens-tag--audit{color:var(--gold); border-color:rgba(232,182,94,0.4);}
 
 /* ===== ABOUT ===== */
 .about__row{display:flex;gap:48px;flex-wrap:wrap;}
@@ -1233,6 +1234,13 @@ footer .section__label{color:var(--gold);}
 .project-preview--peri .scan-line{background:linear-gradient(90deg, rgba(157,180,232,0), rgba(157,180,232,0.45), rgba(157,180,232,0));}
 .project-preview--mint .scan-line{background:linear-gradient(90deg, rgba(127,217,174,0), rgba(127,217,174,0.45), rgba(127,217,174,0));}
 .project-preview--coral .scan-line{background:linear-gradient(90deg, rgba(238,134,105,0), rgba(238,134,105,0.45), rgba(238,134,105,0));}
+.project-preview--gold:hover, .project-preview--gold.touched{
+  border-color:var(--gold);
+  box-shadow:0 16px 32px rgba(232,182,94,0.16);
+}
+.project-preview--gold:hover .project-preview__cue, .project-preview--gold.touched .project-preview__cue{color:var(--cream);}
+.project-preview--gold:hover .project-preview__cue-icon, .project-preview--gold.touched .project-preview__cue-icon{border-color:var(--gold);}
+.project-preview--gold .scan-line{background:linear-gradient(90deg, rgba(232,182,94,0), rgba(232,182,94,0.45), rgba(232,182,94,0));}
 .project-preview.spotlight{
   transform:translateY(-4px);
   box-shadow:0 0 0 1.5px var(--gold), 0 16px 32px rgba(232,182,94,0.18);
@@ -1570,6 +1578,7 @@ footer .section__label{color:var(--gold);}
       <div class="card__tags"><span>UX Audit</span><span>Data Integrity</span><span>Usability Review</span></div>
       <div class="card__more"><span class="card__more-icon">+</span> Highlight</div>
       <div class="card__highlight-wrap"><p class="card__highlight"><strong>What stood out:</strong> Caught a data retention gap where incarcerated individuals' profiles were being deleted rather than archived — a small UX fix protecting real casework history for future use.</p></div>
+      <a class="card__link" href="#projects" data-open="body-swbcc">Read the full case study ↓</a>
     </article>
 
     <article class="card card--peri" data-cat="hospitality" data-loc="exeter">
@@ -2181,6 +2190,74 @@ footer .section__label{color:var(--gold);}
   </div>
   </div><!-- /body-limelight -->
 
+</section>
+
+<section id="swbcc" class="reveal">
+  <div class="project-toggle" data-target="body-swbcc">
+    <div>
+      <div class="section__label-row">
+        <div class="section__label">Featured Audit</div>
+        <span class="lens-tag lens-tag--audit">Research → trust &amp; safety</span>
+      </div>
+      <h2 class="section__title">Kaleidoscope: Auditing a Live Crime-Prevention System</h2>
+    </div>
+    <button class="toggle-btn" data-target="body-swbcc" aria-expanded="false">
+      <span>Read the full audit</span> <span class="toggle-icon">+</span>
+    </button>
+  </div>
+  <div class="project-preview project-preview--gold" data-target="body-swbcc" data-loc="exeter" style="cursor:pointer;">
+    <div class="scan-line"></div>
+    <div class="project-preview__stat"><dt>Client</dt><dd>South West Business Crime Centre</dd></div>
+    <div class="project-preview__stat"><dt>Method</dt><dd>Independent structured audit</dd></div>
+    <div class="project-preview__stat"><dt>Delivered</dt><dd>Jun 2026</dd></div>
+    <div class="project-preview__finding"><strong>Key finding:</strong> A data retention gap was quietly deleting real casework history instead of archiving it.</div>
+    <div class="project-preview__cue"><span class="project-preview__cue-icon">+</span> Tap to read the full audit</div>
+  </div>
+  <div class="project-body" id="body-swbcc">
+  <div style="height:32px;"></div>
+  <div class="diss-grid">
+    <div class="diss-text">
+      <p>South West Business Crime Centre is an independent, 20+ year business crime reduction consultancy that supports Business Improvement Districts (BIDs) across the UK, including Bristol, Bath, Salisbury, and Weston-super-Mare, in running shared crime prevention partnerships. At the centre of that work is <strong>Kaleidoscope</strong>, a criminal profile tracking system used by analysts to record and manage profiles of individuals flagged across member businesses, exactly the kind of sensitive, high-stakes tool where usability and data integrity genuinely matter to real people's outcomes.</p>
+      <p>I approached the founder directly and secured an independent structured audit of the system, reviewing interaction design, information architecture, and data-handling practices across the platform, then wrote up my findings as a formal report rather than informal feedback, prioritised by risk and paired with implementation-ready recommendations.</p>
+      <p>The audit surfaced three distinct issues. A <strong>critical interaction bug</strong>, caused by a layout overlap and conflicting z-index, was blocking the profile "Close" button entirely, trapping analysts inside a modal view with no way out short of a full page reload. A <strong>weak visual hierarchy</strong> on individual profile pages was slowing down analysts during time-sensitive casework, which I addressed with a proposed redesign using consistent grid alignment and collapsible or tabbed sections. But the most consequential finding was a <strong>data retention gap</strong>: profiles belonging to incarcerated individuals were being permanently deleted from the system rather than archived, silently erasing historical network and case data that could matter for future casework or audits.</p>
+      <p>I delivered the report directly to the founder, who relayed it to the development team for implementation. It's a small project on paper, one audit, one client, but it's the piece of work I'd point to first if asked what "research that actually changes something" looks like: the data retention finding wasn't a UI polish note, it was a quiet risk to real institutional memory that nobody had flagged yet.</p>
+    </div>
+    <div class="diss-file">
+      <div class="diss-file__header">
+        <span>File No. SWBCC-26</span>
+        <span>Exeter, 2026</span>
+      </div>
+      <dl class="diss-stat">
+        <dt>Client</dt>
+        <dd>South West Business Crime Centre</dd>
+      </dl>
+      <dl class="diss-stat">
+        <dt>System audited</dt>
+        <dd>Kaleidoscope (criminal profile tracking system)</dd>
+      </dl>
+      <dl class="diss-stat">
+        <dt>Method</dt>
+        <dd>Independent structured UX/UI audit</dd>
+      </dl>
+      <dl class="diss-stat">
+        <dt>Scope</dt>
+        <dd>Interaction design, information architecture, data-handling practices</dd>
+      </dl>
+      <dl class="diss-stat">
+        <dt>Findings</dt>
+        <dd>1 critical interaction bug, 1 visual hierarchy issue, 1 data retention risk</dd>
+      </dl>
+      <dl class="diss-stat">
+        <dt>Delivered to</dt>
+        <dd>Company founder, relayed to the development team for implementation</dd>
+      </dl>
+      <div class="diss-finding">
+        <span>Key finding</span>
+        A data retention gap was silently deleting real casework history instead of archiving it, a quiet risk to institutional memory nobody had flagged yet.
+      </div>
+    </div>
+  </div>
+  </div><!-- /body-swbcc -->
 </section>
 
 
